@@ -116,7 +116,133 @@ img{
     opacity: 0.6;
 }
 
+/* TEST*/
+.main {
+    max-width: 950px;
+    margin: auto;
+}
 
+.home-slideshow {
+    margin-bottom: 150px;
+}
+
+.home-slideshow img {
+    width: 100%;
+}
+
+.btn-default:hover {
+    opacity: 1 !important;
+}
+
+.caro:hover .btn-default {
+    opacity: 1 !important;
+}
+
+.navbar-static-side {
+    z-index: initial;
+}
+
+/* The Modal (background) */
+.editShow {
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 40px;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+/* Edit Content */
+.editShow-content {
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+#comFirmDeleteImgs,
+#comFirmDeleteImgs_Edit {
+    padding-top: 50px;
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Black w/ opacity */
+}
+
+/* test css*/
+.notification-section {
+    width: 100%;
+    background-color: #fff;
+    padding: 16px 0 4px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0px 2px 20px 6px rgb(0 0 0 / 15%);
+    border-radius: 4px;
+}
+
+.notification {
+    background-color: #edf7fa;
+    padding: 16px;
+    margin: 0 16px 12px;
+    border-radius: 4px;
+}
+
+.notification__header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.action-icon {
+    cursor: pointer;
+}
+
+.action-menu {
+    background-color: #fff;
+    list-style: none;
+    position: absolute;
+    top: 20px;
+    z-index: 1;
+    display: none;
+}
+
+.action-menu:first-child {
+    border-radius: 2px;
+}
+
+.action-menu:last-child {
+    border-radius: 2px;
+}
+.btn-action {
+    background-color: #fff;
+    width: 70px;
+    outline: none;
+    padding: 8px 16px;
+    padding-top: 1px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.btn-action:hover {
+    background-color: #ddd;
+}
 /****** media queries *******/
 
 @media(max-width: 992px){

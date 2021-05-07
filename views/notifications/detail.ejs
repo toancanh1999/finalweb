@@ -45,7 +45,9 @@
                             <%= notification.owner %>   |
                         </a>
                     </div>
-                    <div class="info__date">Ngày đăng <%= notification.createdAt.toLocaleDateString() %> </div>
+                    <div class="info__date">Ngày đăng  <%= new
+                        Date(notification.createdAt).toLocaleDateString() %>
+                        <%= new Date(notification.createdAt).toLocaleTimeString() %> </div>
 
                 </div>
                 <div class="noti-detail__content">

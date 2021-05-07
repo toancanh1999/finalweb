@@ -1,6 +1,21 @@
 const express = require('express');
 const router = express.Router();
 const mongodb = require("mongodb");
+var multer = require('multer');
+var storage = multer.diskStorage({
+    destination: function (req, file, callback) {
+      if (file.mimetype.startsWith('image/')) {
+        callback(null, 'public/images');
+      }
+      else if (file.mimetype.startsWith('video/')) {
+        callback(null, 'public/videos');
+      }
+    },
+    filename: function (req, file, callback) {
+      callback(null, file.originalname);
+    }
+  });
+var upload = multer({ storage: storage });
 const ObjectId = mongodb.ObjectId;
 const securedLogin = (req, res, next) => {
     if (req.user) {
@@ -19,16 +34,16 @@ router.get('/pagesByFacul/:fId/:page', securedLogin, (req, res) => {
     let facultyQuery = req.app.db.collection("users").find({ role: { $nin: ['admin', 'student'] } }).toArray();
     Promise.all([facultyQuery, notiQuery])
         .then(([faculties, notifications]) => {
-                var list_falcul_name = toRawFacul(faculties);
-                res.render('notifications/all', {
-                    currentUser: req.user,
-                    notifications,
-                    faculties,
-                    current: page,
-                    list_falcul_name,
-                    pages: Math.ceil(notifications.length / perPage)
-                })
-            
+            var list_falcul_name = toRawFacul(faculties);
+            res.render('notifications/all', {
+                currentUser: req.user,
+                notifications,
+                faculties,
+                current: page,
+                list_falcul_name,
+                pages: Math.ceil(notifications.length / perPage)
+            })
+
         })
     // var abc = '' + req.params.fId;
     // res.send(abc);
@@ -103,10 +118,9 @@ router.post('/delete/:id', securedLogin, (req, res) => {
         }
     });
 })
-router.post('/:fcId', securedLogin, (req, res) => {
+router.post('/create', securedLogin,upload.any("litsfile"), (req, res) => {
     var createdAt = new Date().getTime();
     const formData = req.body;
-    formData.user = req.params.fcId;
     console.log(formData);
     req.app.db.collection("notifications").insertOne({
         "title": formData.title,
@@ -117,7 +131,10 @@ router.post('/:fcId', securedLogin, (req, res) => {
         "user": req.user._id
     }, (err, user) => {
         if (!err) {
-            res.redirect('back');
+            res.json({
+                "status": "success",
+                "message": "Noti has been Create."
+            });
         }
         else {
             res.send("Bi loi roi: " + err);
@@ -125,7 +142,18 @@ router.post('/:fcId', securedLogin, (req, res) => {
     });
 });
 
-// router.get('/detail/:id', securedLv1, NotifyController.detail)
+router.get('/detail/:id', securedLogin, (req, res) => {
+    req.app.db.collection("notifications").findOne({
+        "_id": ObjectId(req.params.id)
+    }, (err, noti) => {
+        if (!err) {
+            res.render('notifications/detail', {
+                currentUser: req.user,
+                notification: noti
+            })
+        }
+    });
+})
 
 
 module.exports = router

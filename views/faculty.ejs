@@ -1,3 +1,4 @@
+<%- include ("shares/header") %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,10 +10,14 @@
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/acd9ed5e69.js" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.2/socket.io.min.js'></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket  =  io();
+    </script>
     <title>Quản lý thông báo</title>
 </head>
 
@@ -142,7 +147,7 @@
                 <div class="modal__title">
                     <h2>Create new Notification</h2>
                 </div>
-                <form method="post" action="/notifications/<%= user._id %> ">
+                <form method="post" onsubmit="return doCreateNoti(this)">
                     <div class="form-group">
                         <label for="title">Tiêu đề</label>
                         <input type="text" name="title" placeholder="Nhập tiêu đề...">
@@ -254,11 +259,30 @@
                 $('#modalNewNotif').modal('show');
             }
         }
-        if (btnConfirmCreate) {
-            btnConfirmCreate.onclick = (e) => {
-                $('#modalNewNotif').modal('hide');
-            }
+        function doCreateNoti(form){
+            $('#modalNewNotif').modal('hide');
+            var ajax = new XMLHttpRequest();
+            ajax.open("POST", "/notifications/create", true);
+            ajax.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var response = JSON.parse(this.responseText);
+                    alert(response.message);
+                    if (response.status == "success") {
+                        socket.emit("id_post","canhtoan");
+                        // location.reload();
+                    }
+                }
+            };
+            var formData = new FormData(form);
+            ajax.send(formData);
+            return false;
+ 
         }
+        // if (btnConfirmCreate) {
+        //     btnConfirmCreate.onclick = (e) => {
+        //         $('#modalNewNotif').modal('hide');
+        //     }
+        // }
         $('.action-icon').on('click', (e) => {
             $(e.target).siblings('ul').toggle();
         })
@@ -296,3 +320,4 @@
 </body>
 
 </html>
+<%- include ("shares/footer") %>

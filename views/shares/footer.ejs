@@ -407,7 +407,7 @@
                     }
                 }
             }
-            
+
         });
     }
     //#endregion
@@ -531,12 +531,12 @@
             var IsNonOfImages = 0;
             if ($(listimg_x).children(".img-container").length == 0) {
                 addImgToPreview_Edit(imagesWill[0].file, id);
-                if($('#Modal-').parent().children('#Modal-' + id).length == 0){
+                if ($('#Modal-').parent().children('#Modal-' + id).length == 0) {
                     $('#Modal-').parent().append(createModalForNewsFeed(id, []));
                 }
                 IsNonOfImages = 1;
             }
-            addToListHinh_Edit(id,IsNonOfImages);
+            addToListHinh_Edit(id, IsNonOfImages);
             //test
             //innerFistImg(id);
         }
@@ -586,7 +586,7 @@
         }
         console.log(imagesWill)
     }
-    function addToListHinh_Edit(id_post,IsNonOfImages) {
+    function addToListHinh_Edit(id_post, IsNonOfImages) {
         var tag = "#listhinh-" + id_post;
         var cha = $(tag); // list anh modal chi tiet
         if (IsNonOfImages == 1) {
@@ -705,23 +705,25 @@
             deletePost(id);
         });
     };
-    function deletePost(id){
+    function deletePost(id) {
         var ajax = new XMLHttpRequest();
-            ajax.open("POST", "/removePost", true);
-            ajax.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    var response = JSON.parse(this.responseText);
-                    alert(response.message);
-                    if (response.status == "success") {
-                        location.reload();
-                    }
+        ajax.open("POST", "/removePost", true);
+        ajax.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var response = JSON.parse(this.responseText);
+                alert(response.message);
+                if (response.status == "success") {
+                    location.reload();
                 }
-            };
-            var formData = new FormData();
-            formData.append("id", id);
-            ajax.send(formData);
+            }
+        };
+        var formData = new FormData();
+        formData.append("id", id);
+        ajax.send(formData);
     }
-
+    socket.on("id_post", (id_post) => {
+        $('#listThongBao').html(id_post)
+    })
 </script>
 <style>
     #post-img-preview,

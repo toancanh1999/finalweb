@@ -36,7 +36,7 @@ router.get('/', secured, (req, res) => {
       console.log('sucess')
     }
   })
-  res.render('index', { title: "Profile", linkPT: req.user.picture, userID: req.user.id, UserName: req.user.name })
+  res.render('home', { title: "Profile", user: req.user, role: 'student', userID: req.user.id })
 })
 router.get('/home', secured, (req, res) => {
   const { role } = req.user;
@@ -87,6 +87,7 @@ router.post("/removePost", upload.any("litsfile"), function (request, result, er
   });
 });
 router.post("/addPost", upload.any("litsfile"), function (request, result, err) {
+  console.log(request.files)
   var listFile = request.files
   var caption = request.body["caption"];
   var images = [];
@@ -96,14 +97,14 @@ router.post("/addPost", upload.any("litsfile"), function (request, result, err) 
   //var _id = request.body["_id"];
   for (var i = 0; i < listFile.length; i++) {
     if (listFile[i].size > 0 && listFile[i].mimetype.includes("image")) {
-      image = "public/images/" + listFile[i].originalname;
+      image = "/images/" + listFile[i].originalname;
       images.push({
         id: "image" + i,
         image: image
       })
     }
     if (listFile[i].size > 0 && listFile[i].mimetype.includes("video")) {
-      video = "public/videos/" + listFile[i].originalname;
+      video = "/videos/" + listFile[i].originalname;
     }
   }
 
@@ -199,14 +200,14 @@ router.post("/editPost", upload.any("litsfile"), function (request, result, err)
           }
           for (var i = 0; i < listFile.length; i++) {
             if (listFile[i].size > 0 && listFile[i].mimetype.includes("image")) {
-              image = "public/images/" + listFile[i].originalname;
+              image = "/images/" + listFile[i].originalname;
               images.push({
                 id: "image" + (end_id + i),
                 image: image
               })
             }
             if (listFile[i].size > 0 && listFile[i].mimetype.includes("video")) {
-              video = "public/videos/" + listFile[i].originalname;
+              video = "/videos/" + listFile[i].originalname;
             }
           }
           request.app.db.collection("posts").updateOne({

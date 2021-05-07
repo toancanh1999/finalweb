@@ -9,13 +9,6 @@ const ObjectId = mongodb.ObjectId;
 const http = require("http").createServer(app);
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
-app.use("/public", express.static(__dirname + "/public"));
-app.use('/css', express.static(__dirname + '/public/css'))
-app.use('/js', express.static(__dirname + '/public/js'))
-app.use('/scss', express.static(__dirname + '/public/scss'))
-app.use('/vendors', express.static(__dirname + '/public/vendors'))
-app.use('/images', express.static(__dirname + '/public/images'))
-app.use('/FileMau', express.static(__dirname + '/public/FileMau'))
 app.use(session({
     resave: false,
     saveUninitialized: true,
@@ -37,7 +30,9 @@ const users = [];
 const mainURL = "http://localhost:8080";
 socketIO.on("connection", function (socket) {
     console.log("User connected", socket.id);
-    socket.on('abc',(a) => {console.log(a)})
+    socket.on('id_post',(id_post) => {
+        socketIO.emit("id_post", id_post)
+    })
 });
 const port = process.env.PORT;
 const urlConnect = "mongodb://localhost:27017"

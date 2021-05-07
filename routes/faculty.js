@@ -23,6 +23,7 @@ router.get('/:fcid', securedLogin, securedRole, (req, res) => {
             "user": fcId
         }).toArray((err,result) => {
             res.render('faculty', {
+                role : req.user.role,
                 user: user,
                 notifications: result
             })

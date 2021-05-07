@@ -2,162 +2,20 @@
     <section>
         <div class="page-content">
             <div class="page-content">
-
-                <style>
-                    .main {
-                        max-width: 950px;
-                        margin: auto;
-                    }
-
-                    .home-slideshow {
-                        margin-bottom: 150px;
-                    }
-
-                    .home-slideshow img {
-                        width: 100%;
-                    }
-
-                    .btn-default:hover {
-                        opacity: 1 !important;
-                    }
-
-                    .caro:hover .btn-default {
-                        opacity: 1 !important;
-                    }
-
-                    .navbar-static-side {
-                        z-index: initial;
-                    }
-
-                    /* The Modal (background) */
-                    .editShow {
-                        position: fixed;
-                        /* Stay in place */
-                        z-index: 1;
-                        /* Sit on top */
-                        padding-top: 100px;
-                        padding-left: 30px;
-                        padding-right: 30px;
-                        padding-bottom: 40px;
-                        /* Location of the box */
-                        left: 0;
-                        top: 0;
-                        width: 100%;
-                        /* Full width */
-                        height: 100%;
-                        /* Full height */
-                        overflow: auto;
-                        /* Enable scroll if needed */
-                        background-color: rgb(0, 0, 0);
-                        /* Fallback color */
-                        background-color: rgba(0, 0, 0, 0.4);
-                        /* Black w/ opacity */
-                    }
-
-                    /* Edit Content */
-                    .editShow-content {
-                        background-color: #fefefe;
-                        padding: 20px;
-                        border: 1px solid #888;
-                        width: 80%;
-                    }
-
-                    #comFirmDeleteImgs,
-                    #comFirmDeleteImgs_Edit {
-                        padding-top: 50px;
-                        background-color: rgb(0, 0, 0);
-                        /* Fallback color */
-                        background-color: rgba(0, 0, 0, 0.6);
-                        /* Black w/ opacity */
-                    }
-
-                    /* test css*/
-                    .notification-section {
-                        width: 100%;
-                        background-color: #fff;
-                        padding: 16px 0 4px;
-                        margin-top: 16px;
-                        margin-bottom: 16px;
-                        box-shadow: 0px 2px 20px 6px rgb(0 0 0 / 15%);
-                        border-radius: 4px;
-                    }
-
-                    .notification {
-                        background-color: #edf7fa;
-                        padding: 16px;
-                        margin: 0 16px 12px;
-                        border-radius: 4px;
-                    }
-
-                    .notification__header {
-                        position: relative;
-                        display: flex;
-                        justify-content: space-between;
-
-                    }
-
-                    .action-icon {
-                        cursor: pointer;
-                    }
-
-                    .action-menu {
-                        background-color: #fff;
-                        list-style: none;
-                        position: absolute;
-                        top: 20px;
-                        z-index: 1;
-                        display: none;
-                    }
-
-                    .action-menu:first-child {
-                        border-radius: 2px;
-                    }
-
-                    .action-menu:last-child {
-                        border-radius: 2px;
-                    }
-                    .btn-action {
-                        background-color: #fff;
-                        width: 70px;
-                        outline: none;
-                        padding: 8px 16px;
-                        padding-top: 1px;
-                        border: none;
-                        border-radius: 3px;
-                        cursor: pointer;
-                    }
-
-                    .btn-action:hover {
-                        background-color: #ddd;
-                    }
-                </style>
-                <link href="css/home.css" rel="stylesheet">
+                <!-- <link href="css/home.css" rel="stylesheet">
                 <link rel="stylesheet" href="css/style.css">
                 <link rel="stylesheet" href="css/color.css">
                 <link rel="stylesheet" href="css/responsive.css">
                 <link rel="stylesheet" href="css/strip.css">
                 <link rel="stylesheet" href="css/responsive.css">
-                <link rel="stylesheet" href="css/main.css">
+                <link rel="stylesheet" href="css/main.css"> -->
                 <div class="page-content">
                     <div id="tab-general">
                         <div class="row mbl">
                             <div class="col-md-8 col-xs-12">
                                 <div class="portlet box">
                                     <div class="portlet-header prolet-primary">
-                                        <div class="caption text-uppercase thong-bao-khan">
-                                            <img class="req-img" src="/images/star.png">
-                                            &nbsp;&nbsp;Thông báo quan trọng
-
-                                        </div>
-                                        <form id="form_seeall" method="post" action="/ThongBao/Filter">
-                                            <input type="text" name="chk_quantrong" id="chk_quantrong" value="1"
-                                                class="hidden">
-                                            <a class="btn-xemtatca" id="XemTatCaTBQuanTrong" style="float: right;">
-                                                <u>Xem tất cả</u>
-                                            </a>
-                                            <input name="__RequestVerificationToken" type="hidden"
-                                                value="CfDJ8Iv63oHoQ3pPiXFRSODrE9-a5BWIiiUU_JqFYchSSogTomZc0CaXBXh5GSP-kzK9P5cLvSuJq_P5f6w-UA9tzK8ZkI5tvhSZmFDnyqZZg0EvDXblcuchObQv86dpoxVgCFzYIT6Ym7oCpgWos_lcuyhxrk2lHPxBqPHWlg8aaX3cEFyhFjt_eK4rsoMSmD70pw">
-                                        </form>
+                                        <a id="listThongBao"></a>
                                     </div>
                                     <div class="portlet-body">
                                         <div id="post-new">
@@ -181,7 +39,7 @@
                                         <form id="form_ChuaXem" method="post" action="/ThongBao/Filter">
                                             <input type="text" name="chk_chuaxem" id="chk_chuaxem" value="1"
                                                 class="hidden">
-                                            <a class="btn-xemtatca" id="XemTatCaTBChuaXem" style="float: right;">
+                                            <a href="/notifications/pages/1" class="btn-xemtatca" id="XemTatCaTBChuaXem" style="float: right;">
                                                 <u>Xem tất cả</u>
                                             </a>
                                             <input name="__RequestVerificationToken" type="hidden"
@@ -970,7 +828,6 @@
             formData.append("li", listImgDel);
             ajax.send(formData);
         }
-        var socket  =  io('');
-        socket.emit('abc',"tao")
+        
     </script>
     <%- include ("shares/footer") %>
