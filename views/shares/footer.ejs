@@ -1,0 +1,733 @@
+</div>
+<!--BEGIN FOOTER-->
+<div id="footer" class="fixed">
+    <div class="copyright">2021 © Huynh Ngoc Canh Toan</div>
+</div>
+<!--END FOOTER-->
+<!--END PAGE WRAPPER-->
+</div>
+</div>
+<div class="image-view"></div>
+<div class="image-box">
+    <div id="prev-btn"></div>
+    <div id="next-btn"></div>
+</div>
+<!--Begin Modal Xac Nhan Xoa Video -->
+<div class="modal fade" id="comFirmDeleteVideo" tabindex="-1" role="dialog" data-backdrop="static"
+    data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">ARE YOU SURE <strong
+                        style="color: brown;font: bold;font-size: large;">DELETE</strong> THIS</h5>
+            </div>
+        </div>
+        <div class="modal-body">
+            <a style="cursor:pointer;background-color:whitesmoke;padding: 10px;" class="video-delete-yes">YES</a>
+            <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>
+<!--END Modal Xac Nhan Xoa Video -->
+<!--Begin Modal Rep Comment -->
+<div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Reply</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form onsubmit="return doPostReply(this);">
+                    <input type="hidden" name="postId">
+                    <input type="hidden" name="commentId">
+                    <textarea name="reply" placeholder="Post your reply"></textarea>
+                    <button type="submit">Post</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END Modal Rep Comment -->
+<!--Begin Modal Show Chi tiet Anh -->
+<div>
+    <div class="modal fade" id="Modal-" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <!-- <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+              </ol> -->
+
+                        <!-- Wrapper for slides -->
+                        <div id="listhinh" class="carousel-inner">
+                            <div class="item active">
+                                <img src="https://media.macphun.com/img/uploads/customer/how-to/579/15531840725c93b5489d84e9.43781620.jpg"
+                                    alt="Los Angeles" style="width:100%;max-height:400px;">
+                            </div>
+                        </div>
+
+                        <!-- Left and right controls -->
+                        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+</div>
+<!--END Modal Show Chi tiet Anh -->
+<!--Begin Modal Xac Nhan Xoa Anh -->
+<div class="modal fade" id="comFirmDeleteImgs" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">ARE YOU SURE <strong
+                        style="color: brown;font: bold;font-size: large;">DELETE</strong> THIS</h5>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a type="button" class="btn btn-danger btn-delete-yes">YES</a>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>
+<!--END Modal Xac Nhan Xoa Anh -->
+<!--Begin Modal Xac Nhan Xoa Anh (Edit) -->
+<div class="modal fade" id="comFirmDeleteImgs_Edit" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">ARE YOU SURE <strong
+                        style="color: brown;font: bold;font-size: large;">DELETE</strong> THIS</h5>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a type="button" class="btn btn-danger edit-delete-yes">YES</a>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>
+<!--END Modal Xac Nhan Xoa Anh (Edit) -->
+<!--Begin Modal Xac Nhan Xoa bai POST -->
+<div class="modal fade" id="modalXoaPost" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">ARE YOU SURE <strong
+                        style="color: brown;font: bold;font-size: large;">DELETE</strong> THIS</h5>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a type="button" class="btn btn-danger xoaPost-yes">YES</a>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>
+<!--END Modal Xac Nhan Xoa bai POST -->
+<!--Begin Modal Xac Nhan EDIT -->
+<div class="modal fade" id="editConfirm" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            </div>
+            <div class="modal-body">
+                ... Are you want <strong style="color: brown;font: bold;font-size: large;"></strong> this
+            </div>
+            <div class="modal-footer">
+                <a type="button" class="btn btn-danger btn-yes">YES</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END Modal Xac Nhan EDIT -->
+</body>
+
+</html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    var isHomePage = true;
+    var linkpt = "<%= user.picture %>"
+    if (isHomePage === true) {
+        showAddPost();
+        //showNewsfeed();
+        showNewsfeed1();
+        YesDeleteImages_POST();
+    };
+    function showAddPost() {
+        var html = "";
+        html += '<div class="central-meta">';
+        html += '<div class="new-postbox">';
+        html += '<figure>';
+        html += '<img src="' + linkpt + '">';
+        html += '</figure>';
+
+        html += '<div class="newpst-input">';
+        html += '<form method="post" id="form-add-post" onsubmit="return doPost(this);" enctype="multipart/form-data">';
+
+        html += '<input name="type" type="hidden" value="post">';
+        html += '<textarea id="captionpost" rows="2" name="caption" placeholder="write something"></textarea>';
+        html += '<div class="attachments">';
+        html += '<ul>';
+
+        html += '<li id="listimg">';
+        html += '</li>';
+
+        html += '<li>';
+        html += '<div class = "img-container">';
+        html += '<video class="video-preview-" id="post-video-preview" controls style="display: none;"></video>';
+        html += '</div>';
+        html += '</li>';
+
+        html += '<li>';
+        html += '<i class="fa fa-image"></i>';
+        html += '<label class="fileContainer">';
+        html += '<input id="abc" type="file" name="user" accept="image/*" onchange="previewPostImage(this);" multiple>';
+        html += '</label>';
+        html += '</li>';
+
+        html += '<li>';
+        html += '<i class="fa fa-video-camera"></i>';
+        html += '<label class="fileContainer">';
+        html += '<input type="file" name="video" onchange="previewPostVideo(this);" accept="video/*">';
+        html += '</label>';
+        html += '</li>';
+
+        html += '<li>';
+        html += '<button type="submit">Post</button>';
+        html += '</li>';
+        html += '</ul>';
+        html += '</div>';
+        html += '</form>';
+        html += '</div>';
+        html += '</div>';
+        html += '</div>';
+        $("#post-new").append(html);
+    }
+    //#region Sự kiện cho POST bài viết >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    function eventClickVideo(id_post) {
+        var listFileId = '.video-preview-' + id_post;
+        $(listFileId).click((e) => {
+            var id = e.target.id;
+            $('#comFirmDeleteVideo a').attr("id", id);
+            $('#comFirmDeleteVideo').modal('show');
+        });
+        $('.video-delete-yes').click((e) => {
+            $('#comFirmDeleteVideo').modal('hide');
+            document.getElementById(e.target.id).style.display = "none";
+            video.splice(0, video.length);
+            videoState.push("Delete");
+        })
+    }
+    function innerFistImg_POST() {
+        let ul = $("#listimg");
+        ul.empty();
+        addImgToPreview(listF[0].file);
+    }
+    function addImgToPreview(file) {
+        let reader = new FileReader();
+        let ul = $("#listimg"); // list anh rut gon
+        html_toAdd1 = `
+                    <div class = "img-container">
+                        `+ '<img id="post-img-preview" style="display: none;">' + `
+
+                        <div class = "content">
+                            <div class = "zoom-text">
+                                Click
+                            </div>
+                            <h2>Landscape One</h2>
+                        </div>
+                    </div>`
+        ul.append(html_toAdd1);
+        reader.onload = function (e) {
+            document.getElementById("post-img-preview").style.display = "";
+            document.getElementById("post-img-preview").setAttribute("src", e.target.result);
+        }
+        reader.readAsDataURL(file);
+    }
+    //  Đưa ảnh vào trong list dữ liệu
+    function pushImagesOnListFile(files) {
+        let coutListF = 0;
+        if (listF.length != 0) {
+            coutListF = listF[listF.length - 1].id + 1;
+        }
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            var fileId = coutListF + i;
+            listF.push({
+                id: fileId,
+                file: file
+            });
+        }
+    }
+    // Đưa video vào trong dữ liệu POST
+    function pushVideoOnListFile(file) {
+        if (video.length > 0) {
+            video[0] = file;
+        }
+        else {
+            video.push(file)
+        }
+        console.log(video)
+    }
+    //  Đưa ảnh vào trong list Carousel POST
+    function addDataToListHinh() {
+        var cha = $("#listhinh"); // list anh modal chi tiet
+        cha.empty();
+        var html_toAdd = "";
+        for (var i = 0; i < listF.length; i++) {
+            (function (file, id) {
+                var name = file.name;
+                var idimgTag = "post-img-preview-" + id;
+                html_toAdd = `<div class="item">
+                  <img id="`+ idimgTag + `" class="listFile-" style="width:100%;max-height:400px;">
+                </div>`;
+                cha.append(html_toAdd)
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById(idimgTag).style.display = "";
+                    document.getElementById(idimgTag).setAttribute("src", e.target.result);
+                }
+                reader.readAsDataURL(file);
+            })(listF[i].file, listF[i].id);
+        }
+        $("#listhinh div").first().addClass("active");
+    }
+    // Hàm onChange() chọn ảnh POST
+    function previewPostImage(self) {
+        var files = self.files;
+        pushImagesOnListFile(files);
+        if (files.length > 0) {
+            addDataToListHinh();
+            innerFistImg_POST();
+            showDetailImages();
+            clickInListFile();
+        }
+    }
+    // Hàm onChange() chọn video POST
+    function previewPostVideo(self) {
+        var files = self.files;
+        pushVideoOnListFile(files[0]);
+        if (files.length > 0) {
+            var fileReader = new FileReader();
+            fileReader.onload = function (event) {
+                document.getElementById("post-video-preview").style.display = "";
+                document.getElementById("post-video-preview").setAttribute("src", event.target.result);
+            };
+            fileReader.readAsDataURL(files[0]);
+        }
+        eventClickVideo("");
+    }
+    function YesDeleteImages_POST() { // vi nut btn-delete co san tu dau nen khong can them vao moi khi onLoa() nen ko can dat lai event khi preView (tranh bi lap lai su kien onClick)
+        $(".btn-delete-yes").click((e) => {
+            $('#comFirmDeleteImgs').modal("hide");
+            var id = e.target.id;
+            for (var i = 0; i < listF.length; i++) {
+                var id_equ = 'post-img-preview-' + listF[i].id;
+                if (id_equ == id) {
+                    listF.splice(i, 1);
+                    $("#" + id_equ).parent().remove();
+                    $("#listhinh div").first().addClass("active");
+                    break;
+                }
+            }
+            if ($("#listhinh div").length == 0) {
+                $("#listhinh").append(`<div class="item active">
+                                            <img src="https://media.macphun.com/img/uploads/customer/how-to/579/15531840725c93b5489d84e9.43781620.jpg"
+                                                alt="Los Angeles" style="width:100%;max-height:400px;">
+                                        </div>`);
+                $("#listimg").empty();
+                $('#Modal-').modal('hide');
+            }
+            console.log(listF)
+        });
+    }
+    function YesDeleteImages_Edit() { // vi nut btn-delete co san tu dau nen khong can them vao moi khi onLoa() nen ko can dat lai event khi preView (tranh bi lap lai su kien onClick)
+        $(".edit-delete-yes").click((e) => {
+            $('#comFirmDeleteImgs_Edit').modal("hide");
+            var post_id = e.target.id.split('img-preview-')[1];
+            var ids = post_id.split('-');
+            $("#" + e.target.id).parent().remove();
+            if (ids[1].includes('image')) {
+                listImgDel.push(ids[1]);
+            }
+            else {
+                for (var i = 0; i < imagesWill.length; i++) {
+                    var id_equ = imagesWill[i].id;
+                    if (id_equ == ids[1]) {
+                        imagesWill.splice(i, 1);
+                        break;
+                    }
+                }
+            }
+            console.log(imagesWill)
+            console.log(listImgDel)
+            var tag_list_hinh_div = '#listhinh-' + ids[0] + ' div';
+            var tag_list_hinh = '#listhinh-' + ids[0];
+            var tag_list_img = '#listimg-' + ids[0];
+            var this_Modal = '#Modal-' + ids[0];
+            $(tag_list_hinh_div).first().addClass("active");
+            if ($(tag_list_hinh_div).length == 0) {
+                $(tag_list_hinh).append(`<div class="item active">
+                                            <img src="https://media.macphun.com/img/uploads/customer/how-to/579/15531840725c93b5489d84e9.43781620.jpg"
+                                                alt="Los Angeles" style="width:100%;max-height:400px;">
+                                        </div>`);
+                $(tag_list_img).empty();
+                $(this_Modal).modal('hide');
+            }
+            else {
+                var next_ids = $(tag_list_hinh_div).first().children().attr("id").split('img-preview-')[1].split('-');
+                if (next_ids[1].includes('image')) {
+                    var src_into_listimg = $(tag_list_hinh_div).first().children().attr("src");
+                    $(tag_list_img + ' div img').attr("src", src_into_listimg);
+                } else {
+                    for (var i = 0; i < imagesWill.length; i++) {
+                        var id_equ = imagesWill[i].id;
+                        if (id_equ == next_ids[1]) {
+                            addImgToPreview_Edit(imagesWill[i].file, next_ids[0]);
+                            break;
+                        }
+                    }
+                }
+            }
+            
+        });
+    }
+    //#endregion
+    function checkHaveFile(files) {
+        return files.file.type.includes("video/");
+    }
+
+    //#region TẠO SỰ KIỆN EDIT
+    function eventEditClick() {
+        $('.btn_edit').click(function (e) {
+            var id = e.target.id;
+            var id_post = id.split('btn-edit-confirm-')[1];
+            $('#editConfirm').find("strong").html("EDIT")
+            $('#editConfirm a').attr("id", id_post);
+            $('#editConfirm').modal("show");
+        })
+        $('.btn-yes').click(function (e) {
+            var formIn = $("#form-post-" + e.target.id).parent().parent();
+            var modalParent = $("#form-post-" + e.target.id).parent().parent().parent();
+            // YES cho event EDIT
+            if ($('#editConfirm').find("strong").html() == 'EDIT') {
+                $('#editConfirm').modal("hide");
+                modalParent.addClass("editShow");
+                formIn.addClass("editShow-content");
+                modalParent.find(".coment-area").hide();
+                $("#btn-edit-confirm-" + e.target.id).hide();
+                haveConfirmEdit(e.target.id);
+                eventCloseClick();
+                clickInListFile_Edit(e.target.id);
+                eventClickVideo(e.target.id);
+                //test
+                YesDeleteImages_Edit();
+            } else { // YES cho event CLOSE
+                // $('#editConfirm').modal("hide");
+                // modalParent.removeClass("editShow");
+                // formIn.removeClass("editShow-content");
+                // $("#ul-edit-" + e.target.id).remove();
+                // modalParent.find(".coment-area").show();
+                // $("#btn-edit-confirm-" + e.target.id).show();
+                // imagesWill.splice(0, imagesWill.length);
+                // video.splice(0, video.length);
+                // console.log(video)
+                // console.log(imagesWill)
+                // removeAllImgBefor(e.target.id);
+                // $(".listFile-" + e.target.id).unbind("click");
+                // $("#video-preview-" + e.target.id).attr("src", srcVideo);
+                location.reload();
+            }
+        });
+    }
+    // Xoa tat ca cac anh da them vao ban dau
+    function removeAllImgBefor(id_post) {
+        var code_to_remove = '.listFile-' + id_post + ':not([id*="img-preview-' + id_post + '-image"])';
+        console.log(code_to_remove);
+        var code_to_remain = '.listFile-' + id_post + '[id*="img-preview-' + id_post + '-image"]';
+        var tag_list_hinh = '#listhinh-' + id_post + ' div';
+        $(code_to_remove).parent().remove();
+        // $(code_to_remain).parent().removeClass("active");
+        // $(tag_list_hinh).first().addClass("active");
+    }
+    // Su kien xac nhan huy bo
+    function eventCloseClick() {
+        $('.btn_close').click(function (e) {
+            var id = e.target.id;
+            var id_post = id.split('btn-close-confirm-')[1];
+            $('#editConfirm').find("strong").html("CLOSE")
+            $('#editConfirm').modal("show");
+        })
+    }
+    // Sử lý khi xác nhận YES để EDIT
+    function haveConfirmEdit(id) {
+        createEditCaption(id);
+        var html = createLiEdit(id);
+        var form_edit = '#form-post-' + id + " .attachments";
+        $(form_edit).append(html);
+    }
+    // Tạo khung area từ khung <p> để chỉnh sửa caption
+    function createEditCaption(id) {
+        var html = '';
+        var p = '#captionpost-' + id;
+        html += '<input name="type" type="hidden" value="post">';
+        html += '<textarea id="captionpost-' + id + '" rows="2" name="caption" placeholder="write something">' + $(p).html() + '</textarea>';
+        $(p).hide();
+        $(p).parent(".description").append(html);
+        $(p).attr("id", "");
+    }
+    // Tạo 3 nút import ẢNH VÀ VIDEO
+    function createLiEdit(id) {
+        var html = "";
+        html += '<ul id="ul-edit-' + id + '">';
+        html += '<li>';
+        html += '<a id="btn-close-confirm-' + id + '" class="btn_close btn btn-secondary" style="cursor:pointer">Close</a>';
+        html += '</li>';
+        html += '<li>';
+        html += '<i class="fa fa-image"></i>';
+        html += '<label class="fileContainer">';
+        html += '<input id="input-tag-edit-' + id + '" type="file" accept="image/*" onchange="previewEditImage(this);" multiple>';
+        html += '</label>';
+        html += '</li>';
+
+        html += '<li>';
+        html += '<i class="fa fa-video-camera"></i>';
+        html += '<label class="fileContainer">';
+        html += '<input id="video-tag-edit-' + id + '" type="file" onchange="previewEditVideo(this);" accept="video/*">';
+        html += '</label>';
+        html += '</li>';
+
+        html += '<li>';
+        html += '<button type="submit">EDIT</button>';
+        html += '</li>';
+        html += '</ul>';
+        return html;
+    }
+    // onChange() for Edit----image
+    function previewEditImage(self) {
+        var id = self.id.split('input-tag-edit-')[1];
+        var files = self.files;
+        var listimg_x = '#listimg-' + id;
+        pushImagesOnListFile_Edit(files);
+        if (files.length > 0) {
+            var IsNonOfImages = 0;
+            if ($(listimg_x).children(".img-container").length == 0) {
+                addImgToPreview_Edit(imagesWill[0].file, id);
+                if($('#Modal-').parent().children('#Modal-' + id).length == 0){
+                    $('#Modal-').parent().append(createModalForNewsFeed(id, []));
+                }
+                IsNonOfImages = 1;
+            }
+            addToListHinh_Edit(id,IsNonOfImages);
+            //test
+            //innerFistImg(id);
+        }
+        clickInListFile_Edit(id);
+    }
+    function innerFistImg(id) {
+        var fistImg = "#img-preview-" + id;
+        var tag_list_hinh = '#listhinh-' + id + ' div'
+        var src = $(tag_list_hinh).first().child().attr("src");
+        $(fistImg).attr("src", src);
+    }
+    // Thêm ảnh đầu nếu bài post không có ảnh
+    function addImgToPreview_Edit(file, id_post) {
+        var tag = "#listimg-" + id_post;
+        let reader = new FileReader();
+        let ul = $(tag); // list anh rut gon
+        html_toAdd1 = `
+                    <div class = "img-container">
+                        `+ '<img id="img-preview-' + id_post + '" style="display: none;">' + `
+                        <div class = "content">
+                            <div id="zoom-text-`+ id_post + `" class = "zoom-text">
+                                Click
+                            </div>
+                            <h2>Landscape One</h2>
+                        </div>
+                    </div>`
+        ul.append(html_toAdd1);
+        reader.onload = function (e) {
+            document.getElementById("img-preview-" + id_post).style.display = "";
+            document.getElementById("img-preview-" + id_post).setAttribute("src", e.target.result);
+        }
+        reader.readAsDataURL(file);
+        showDetailImages();
+    }
+    function pushImagesOnListFile_Edit(files) {
+        let coutListF = 0;
+        if (imagesWill.length != 0) {
+            coutListF = imagesWill[imagesWill.length - 1].id + 1;
+        }
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            var fileId = coutListF + i;
+            imagesWill.push({
+                id: fileId,
+                file: file
+            });
+        }
+        console.log(imagesWill)
+    }
+    function addToListHinh_Edit(id_post,IsNonOfImages) {
+        var tag = "#listhinh-" + id_post;
+        var cha = $(tag); // list anh modal chi tiet
+        if (IsNonOfImages == 1) {
+            cha.empty();
+        }
+        //test
+        removeAllImgBefor(id_post);
+        var html_toAdd = "";
+        for (var i = 0; i < imagesWill.length; i++) {
+            (function (file, id) {
+                var name = file.name;
+                var idimgTag = "img-preview-" + id_post + "-" + id;
+                html_toAdd = `<div class="item">
+                  <img id="`+ idimgTag + `" class="listFile-` + id_post + `" style="width:100%;max-height:400px;">
+                </div>`;
+                cha.append(html_toAdd)
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById(idimgTag).style.display = "";
+                    document.getElementById(idimgTag).setAttribute("src", e.target.result);
+                }
+                reader.readAsDataURL(file);
+            })(imagesWill[i].file, imagesWill[i].id);
+        }
+        if (IsNonOfImages == 1) {
+            var tag_list_hinh = '#listhinh-' + id_post + ' div'
+            $(tag_list_hinh).first().addClass("active");
+        }
+        // var tag_list_hinh = '#listhinh-' + id_post + ' div'
+        //     $(tag_list_hinh).first().addClass("active");
+    }
+    // onChange() for Edit----image
+    function previewEditVideo(self) {
+        var id = self.id.split('video-tag-edit-')[1];
+        var file = self.files;
+        pushVideoOnListFile(file[0]);
+        if (file.length > 0) {
+            var fileReader = new FileReader();
+            fileReader.onload = function (event) {
+                document.getElementById("video-preview-" + id).style.display = "";
+                document.getElementById("video-preview-" + id).setAttribute("src", event.target.result);
+            };
+            fileReader.readAsDataURL(file[0]);
+        }
+    }
+    //#endregion
+
+    //#region
+    //#endregion
+
+    //#region
+    //#endregion
+
+    function addDataToListHinh_newsFeed(id_list_hinh, id_post) {
+        var cha = $(id_list_hinh); // list anh modal chi tiet
+        cha.empty();
+        var html_toAdd = "";
+        for (var i = 0; i < listF.length; i++) {
+            (function (file, id) {
+                var name = file.name;
+                var idimgTag = "img-preview-" + id_post + "-" + i;
+                html_toAdd = `<div class="item">
+                  <img id="`+ idimgTag + `" class="listFile" style="width:100%;max-height:400px;">
+                </div>`;
+                cha.append(html_toAdd)
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById(idimgTag).style.display = "";
+                    document.getElementById(idimgTag).setAttribute("src", e.target.result);
+                }
+                reader.readAsDataURL(file);
+            })(listF[i].file, listF[i].id);
+        }
+        $("#listhinh div").first().addClass("active");
+    }
+    // Bat su kien xoa anh trong PREVIEW POST
+    function clickInListFile() {
+        $('.listFile-').click((e) => {
+            var id = e.target.id;
+            $('#comFirmDeleteImgs a').attr("id", id);
+            $('#comFirmDeleteImgs').modal('show');
+        });
+    }
+    // Bat su kien xoa anh trong PREVIEW EDIT
+    function clickInListFile_Edit(id_post) {
+        var listFileId = '.listFile-' + id_post;
+        $(listFileId).click((e) => {
+            var id = e.target.id;
+            $('#comFirmDeleteImgs_Edit a').attr("id", id);
+            $('#comFirmDeleteImgs_Edit').modal('show');
+        });
+    }
+    function showDetailImages() {
+        $(".zoom-text").click(function (e) {
+            if (!e.target.id) {
+                $("#Modal-").modal("show");
+            }
+            else {
+                var id = e.target.id.split("zoom-text-")
+                $("#Modal-" + id[1]).modal("show");
+            }
+        })
+        $('.action-icon').on('click', (e) => {
+            $(e.target).siblings('ul').toggle();
+        })
+    };
+    function eventEditoDeleteClick() {
+        $('.btn_edit_toDelete').click((e) => {
+            var id = e.target.id;
+            var id_post = id.split('btn-edit-toDelete-confirm-')[1];
+            $('#modalXoaPost a').attr("id", id_post);
+            $('#modalXoaPost').modal('show');
+        });
+        $('.xoaPost-yes').click((e) => {
+            var id = e.target.id;
+            deletePost(id);
+        });
+    };
+    function deletePost(id){
+        var ajax = new XMLHttpRequest();
+            ajax.open("POST", "/removePost", true);
+            ajax.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var response = JSON.parse(this.responseText);
+                    alert(response.message);
+                    if (response.status == "success") {
+                        location.reload();
+                    }
+                }
+            };
+            var formData = new FormData();
+            formData.append("id", id);
+            ajax.send(formData);
+    }
+
+</script>
+<style>
+    #post-img-preview,
+    #post-video-preview {
+        height: 300px;
+        width: 300px;
+        object-fit: cover;
+    }
+</style>

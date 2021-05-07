@@ -1,0 +1,976 @@
+<%- include ("shares/header") %>
+    <section>
+        <div class="page-content">
+            <div class="page-content">
+
+                <style>
+                    .main {
+                        max-width: 950px;
+                        margin: auto;
+                    }
+
+                    .home-slideshow {
+                        margin-bottom: 150px;
+                    }
+
+                    .home-slideshow img {
+                        width: 100%;
+                    }
+
+                    .btn-default:hover {
+                        opacity: 1 !important;
+                    }
+
+                    .caro:hover .btn-default {
+                        opacity: 1 !important;
+                    }
+
+                    .navbar-static-side {
+                        z-index: initial;
+                    }
+
+                    /* The Modal (background) */
+                    .editShow {
+                        position: fixed;
+                        /* Stay in place */
+                        z-index: 1;
+                        /* Sit on top */
+                        padding-top: 100px;
+                        padding-left: 30px;
+                        padding-right: 30px;
+                        padding-bottom: 40px;
+                        /* Location of the box */
+                        left: 0;
+                        top: 0;
+                        width: 100%;
+                        /* Full width */
+                        height: 100%;
+                        /* Full height */
+                        overflow: auto;
+                        /* Enable scroll if needed */
+                        background-color: rgb(0, 0, 0);
+                        /* Fallback color */
+                        background-color: rgba(0, 0, 0, 0.4);
+                        /* Black w/ opacity */
+                    }
+
+                    /* Edit Content */
+                    .editShow-content {
+                        background-color: #fefefe;
+                        padding: 20px;
+                        border: 1px solid #888;
+                        width: 80%;
+                    }
+
+                    #comFirmDeleteImgs,
+                    #comFirmDeleteImgs_Edit {
+                        padding-top: 50px;
+                        background-color: rgb(0, 0, 0);
+                        /* Fallback color */
+                        background-color: rgba(0, 0, 0, 0.6);
+                        /* Black w/ opacity */
+                    }
+
+                    /* test css*/
+                    .notification-section {
+                        width: 100%;
+                        background-color: #fff;
+                        padding: 16px 0 4px;
+                        margin-top: 16px;
+                        margin-bottom: 16px;
+                        box-shadow: 0px 2px 20px 6px rgb(0 0 0 / 15%);
+                        border-radius: 4px;
+                    }
+
+                    .notification {
+                        background-color: #edf7fa;
+                        padding: 16px;
+                        margin: 0 16px 12px;
+                        border-radius: 4px;
+                    }
+
+                    .notification__header {
+                        position: relative;
+                        display: flex;
+                        justify-content: space-between;
+
+                    }
+
+                    .action-icon {
+                        cursor: pointer;
+                    }
+
+                    .action-menu {
+                        background-color: #fff;
+                        list-style: none;
+                        position: absolute;
+                        top: 20px;
+                        z-index: 1;
+                        display: none;
+                    }
+
+                    .action-menu:first-child {
+                        border-radius: 2px;
+                    }
+
+                    .action-menu:last-child {
+                        border-radius: 2px;
+                    }
+                    .btn-action {
+                        background-color: #fff;
+                        width: 70px;
+                        outline: none;
+                        padding: 8px 16px;
+                        padding-top: 1px;
+                        border: none;
+                        border-radius: 3px;
+                        cursor: pointer;
+                    }
+
+                    .btn-action:hover {
+                        background-color: #ddd;
+                    }
+                </style>
+                <link href="css/home.css" rel="stylesheet">
+                <link rel="stylesheet" href="css/style.css">
+                <link rel="stylesheet" href="css/color.css">
+                <link rel="stylesheet" href="css/responsive.css">
+                <link rel="stylesheet" href="css/strip.css">
+                <link rel="stylesheet" href="css/responsive.css">
+                <link rel="stylesheet" href="css/main.css">
+                <div class="page-content">
+                    <div id="tab-general">
+                        <div class="row mbl">
+                            <div class="col-md-8 col-xs-12">
+                                <div class="portlet box">
+                                    <div class="portlet-header prolet-primary">
+                                        <div class="caption text-uppercase thong-bao-khan">
+                                            <img class="req-img" src="/images/star.png">
+                                            &nbsp;&nbsp;Thông báo quan trọng
+
+                                        </div>
+                                        <form id="form_seeall" method="post" action="/ThongBao/Filter">
+                                            <input type="text" name="chk_quantrong" id="chk_quantrong" value="1"
+                                                class="hidden">
+                                            <a class="btn-xemtatca" id="XemTatCaTBQuanTrong" style="float: right;">
+                                                <u>Xem tất cả</u>
+                                            </a>
+                                            <input name="__RequestVerificationToken" type="hidden"
+                                                value="CfDJ8Iv63oHoQ3pPiXFRSODrE9-a5BWIiiUU_JqFYchSSogTomZc0CaXBXh5GSP-kzK9P5cLvSuJq_P5f6w-UA9tzK8ZkI5tvhSZmFDnyqZZg0EvDXblcuchObQv86dpoxVgCFzYIT6Ym7oCpgWos_lcuyhxrk2lHPxBqPHWlg8aaX3cEFyhFjt_eK4rsoMSmD70pw">
+                                        </form>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <div id="post-new">
+
+                                        </div>
+                                        <div id="newsfeed" class="loadmore">
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-xs-12">
+                                <div class="portlet box prolet-primary">
+                                    <div class="portlet-header head-tb-moi">
+                                        <div class="caption text-uppercase">
+                                            <img class="tb-moi" src="/images/new.png">
+                                            &nbsp;&nbsp;Thông báo mới
+
+                                        </div>
+                                        <form id="form_ChuaXem" method="post" action="/ThongBao/Filter">
+                                            <input type="text" name="chk_chuaxem" id="chk_chuaxem" value="1"
+                                                class="hidden">
+                                            <a class="btn-xemtatca" id="XemTatCaTBChuaXem" style="float: right;">
+                                                <u>Xem tất cả</u>
+                                            </a>
+                                            <input name="__RequestVerificationToken" type="hidden"
+                                                value="CfDJ8Iv63oHoQ3pPiXFRSODrE9-a5BWIiiUU_JqFYchSSogTomZc0CaXBXh5GSP-kzK9P5cLvSuJq_P5f6w-UA9tzK8ZkI5tvhSZmFDnyqZZg0EvDXblcuchObQv86dpoxVgCFzYIT6Ym7oCpgWos_lcuyhxrk2lHPxBqPHWlg8aaX3cEFyhFjt_eK4rsoMSmD70pw">
+                                        </form>
+                                    </div>
+                                    <div class="portlet-body div-tb-moi">
+                                        <div class="slimScrollDiv"
+                                            style="position: relative; overflow: hidden; width: 100%; height: 270px;">
+                                            <div class="chat-scroller"
+                                                style="overflow: hidden; width: 100%; height: 270px;">
+                                                <ul class="chats" id="ol_tb_moi">
+                                                    <li class="out">
+                                                        <div class="message">
+                                                            <span class="chat-datetime">[Phòng Đại học] &nbsp;&nbsp; -
+                                                                09/04/2021</span>
+                                                            <a class="tb-moi-click"
+                                                                onclick="openInNewTab('/ThongBao/Detail/135709')"
+                                                                data-id="135709" data-donvi="P03"><span
+                                                                    class="chat-body tieu-de"
+                                                                    title="DANH SÁCH THI KỸ NĂNG THỰC HÀNH CHUYÊN MÔN THÁNG 04/2021">DANH
+                                                                    SÁCH THI KỸ NĂNG THỰC HÀNH CHUYÊN MÔN THÁNG
+                                                                    04/2021</span></a>
+                                                            <span class="chat-body">Sinh viên xem danh sách không đủ
+                                                                điều kiện dự thi và danh sách dự thi Kỹ năng thực hành
+                                                                chuyên môn tháng 04/2021 trong thông báo....</span>
+                                                        </div>
+                                                    </li>
+                                                    <li class="in">
+                                                        <div class="message">
+                                                            <span class="chat-datetime">[TDT Creative Language Center]
+                                                                &nbsp;&nbsp; - 09/04/2021</span>
+                                                            <a class="tb-moi-click"
+                                                                onclick="openInNewTab('/ThongBao/Detail/135711')"
+                                                                data-id="135711" data-donvi="P15"><span
+                                                                    class="chat-body tieu-de"
+                                                                    title="Thông báo về việc tổ chức cho sinh viên học bù và kiểm tra bù tại TDT CLC">Thông
+                                                                    báo về việc tổ chức cho sinh viên học bù và kiểm tra
+                                                                    bù tại TDT CLC</span></a>
+                                                            <span class="chat-body">Thông báo về việc tổ chức cho sinh
+                                                                viên học bù và kiểm tra bù tại TDT CLC</span>
+                                                        </div>
+                                                    </li>
+                                                    <li class="out">
+                                                        <div class="message">
+                                                            <span class="chat-datetime">[TDT Creative Language Center]
+                                                                &nbsp;&nbsp; - 09/04/2021</span>
+                                                            <a class="tb-moi-click"
+                                                                onclick="openInNewTab('/ThongBao/Detail/135710')"
+                                                                data-id="135710" data-donvi="P15"><span
+                                                                    class="chat-body tieu-de"
+                                                                    title="Thông báo về việc tổ chức cho sinh viên học bù và kiểm tra bù tại TDT CLC">Thông
+                                                                    báo về việc tổ chức cho sinh viên học bù và kiểm tra
+                                                                    bù tại TDT CLC</span></a>
+                                                            <span class="chat-body">Thông báo về việc tổ chức cho sinh
+                                                                viên học bù và kiểm tra bù tại TDT CLC</span>
+                                                        </div>
+                                                    </li>
+                                                    <li class="in">
+                                                        <div class="message">
+                                                            <span class="chat-datetime">[Viện chính sách kinh tế và kinh
+                                                                doanh (IBEP)] &nbsp;&nbsp; - 08/04/2021</span>
+                                                            <a class="tb-moi-click"
+                                                                onclick="openInNewTab('/ThongBao/Detail/135697')"
+                                                                data-id="135697" data-donvi="P48"><span
+                                                                    class="chat-body tieu-de"
+                                                                    title="Khai giảng khóa xuất nhập khẩu thực hành">Khai
+                                                                    giảng khóa xuất nhập khẩu thực hành</span></a>
+                                                            <span class="chat-body">Ngày 12/04/2021</span>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="slimScrollBar"
+                                                style="background: rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 482px;">
+                                            </div>
+                                            <div class="slimScrollRail"
+                                                style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div>
+                                        <div id="zabuto_calendar_9ph">
+                                            <div class="zabuto_calendar" id="zabuto_calendar_9ph">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr class="calendar-month-header">
+                                                            <th>
+                                                                <div class="calendar-month-navigation"
+                                                                    id="zabuto_calendar_9ph_nav-prev"><span><span
+                                                                            class="glyphicon glyphicon-chevron-left"></span></span>
+                                                                </div>
+                                                            </th>
+                                                            <th colspan="5"><span>April 2021</span></th>
+                                                            <th>
+                                                                <div class="calendar-month-navigation"
+                                                                    id="zabuto_calendar_9ph_nav-next"><span><span
+                                                                            class="glyphicon glyphicon-chevron-right"></span></span>
+                                                                </div>
+                                                            </th>
+                                                        </tr>
+                                                        <tr class="calendar-dow-header">
+                                                            <th>Mon</th>
+                                                            <th>Tue</th>
+                                                            <th>Wed</th>
+                                                            <th>Thu</th>
+                                                            <th>Fri</th>
+                                                            <th>Sat</th>
+                                                            <th>Sun</th>
+                                                        </tr>
+                                                        <tr class="calendar-dow">
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td id="zabuto_calendar_9ph_2021-04-01">
+                                                                <div id="zabuto_calendar_9ph_2021-04-01_day"
+                                                                    class="day">1</div>
+                                                            </td>
+                                                            <td id="zabuto_calendar_9ph_2021-04-02">
+                                                                <div id="zabuto_calendar_9ph_2021-04-02_day"
+                                                                    class="day">2</div>
+                                                            </td>
+                                                            <td id="zabuto_calendar_9ph_2021-04-03">
+                                                                <div id="zabuto_calendar_9ph_2021-04-03_day"
+                                                                    class="day">3</div>
+                                                            </td>
+                                                            <td id="zabuto_calendar_9ph_2021-04-04">
+                                                                <div id="zabuto_calendar_9ph_2021-04-04_day"
+                                                                    class="day">4</div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="calendar-dow">
+                                                            <td id="zabuto_calendar_9ph_2021-04-05">
+                                                                <div id="zabuto_calendar_9ph_2021-04-05_day"
+                                                                    class="day">5</div>
+                                                            </td>
+                                                            <td id="zabuto_calendar_9ph_2021-04-06">
+                                                                <div id="zabuto_calendar_9ph_2021-04-06_day"
+                                                                    class="day">6</div>
+                                                            </td>
+                                                            <td id="zabuto_calendar_9ph_2021-04-07">
+                                                                <div id="zabuto_calendar_9ph_2021-04-07_day"
+                                                                    class="day">7</div>
+                                                            </td>
+                                                            <td id="zabuto_calendar_9ph_2021-04-08">
+                                                                <div id="zabuto_calendar_9ph_2021-04-08_day"
+                                                                    class="day">8</div>
+                                                            </td>
+                                                            <td id="zabuto_calendar_9ph_2021-04-09">
+                                                                <div id="zabuto_calendar_9ph_2021-04-09_day"
+                                                                    class="day"><span class="badge badge-today">9</span>
+                                                                </div>
+                                                            </td>
+                                                            <td id="zabuto_calendar_9ph_2021-04-10">
+                                                                <div id="zabuto_calendar_9ph_2021-04-10_day"
+                                                                    class="day">10</div>
+                                                            </td>
+                                                            <td id="zabuto_calendar_9ph_2021-04-11">
+                                                                <div id="zabuto_calendar_9ph_2021-04-11_day"
+                                                                    class="day">11</div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="calendar-dow">
+                                                            <td id="zabuto_calendar_9ph_2021-04-12">
+                                                                <div id="zabuto_calendar_9ph_2021-04-12_day"
+                                                                    class="day">12</div>
+                                                            </td>
+                                                            <td id="zabuto_calendar_9ph_2021-04-13">
+                                                                <div id="zabuto_calendar_9ph_2021-04-13_day"
+                                                                    class="day">13</div>
+                                                            </td>
+                                                            <td id="zabuto_calendar_9ph_2021-04-14">
+                                                                <div id="zabuto_calendar_9ph_2021-04-14_day"
+                                                                    class="day">14</div>
+                                                            </td>
+                                                            <td id="zabuto_calendar_9ph_2021-04-15">
+                                                                <div id="zabuto_calendar_9ph_2021-04-15_day"
+                                                                    class="day">15</div>
+                                                            </td>
+                                                            <td id="zabuto_calendar_9ph_2021-04-16">
+                                                                <div id="zabuto_calendar_9ph_2021-04-16_day"
+                                                                    class="day">16</div>
+                                                            </td>
+                                                            <td id="zabuto_calendar_9ph_2021-04-17">
+                                                                <div id="zabuto_calendar_9ph_2021-04-17_day"
+                                                                    class="day">17</div>
+                                                            </td>
+                                                            <td id="zabuto_calendar_9ph_2021-04-18">
+                                                                <div id="zabuto_calendar_9ph_2021-04-18_day"
+                                                                    class="day">18</div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="calendar-dow">
+                                                            <td id="zabuto_calendar_9ph_2021-04-19">
+                                                                <div id="zabuto_calendar_9ph_2021-04-19_day"
+                                                                    class="day">19</div>
+                                                            </td>
+                                                            <td id="zabuto_calendar_9ph_2021-04-20">
+                                                                <div id="zabuto_calendar_9ph_2021-04-20_day"
+                                                                    class="day">20</div>
+                                                            </td>
+                                                            <td id="zabuto_calendar_9ph_2021-04-21">
+                                                                <div id="zabuto_calendar_9ph_2021-04-21_day"
+                                                                    class="day">21</div>
+                                                            </td>
+                                                            <td id="zabuto_calendar_9ph_2021-04-22">
+                                                                <div id="zabuto_calendar_9ph_2021-04-22_day"
+                                                                    class="day">22</div>
+                                                            </td>
+                                                            <td id="zabuto_calendar_9ph_2021-04-23">
+                                                                <div id="zabuto_calendar_9ph_2021-04-23_day"
+                                                                    class="day">23</div>
+                                                            </td>
+                                                            <td id="zabuto_calendar_9ph_2021-04-24">
+                                                                <div id="zabuto_calendar_9ph_2021-04-24_day"
+                                                                    class="day">24</div>
+                                                            </td>
+                                                            <td id="zabuto_calendar_9ph_2021-04-25">
+                                                                <div id="zabuto_calendar_9ph_2021-04-25_day"
+                                                                    class="day">25</div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="calendar-dow">
+                                                            <td id="zabuto_calendar_9ph_2021-04-26">
+                                                                <div id="zabuto_calendar_9ph_2021-04-26_day"
+                                                                    class="day">26</div>
+                                                            </td>
+                                                            <td id="zabuto_calendar_9ph_2021-04-27">
+                                                                <div id="zabuto_calendar_9ph_2021-04-27_day"
+                                                                    class="day">27</div>
+                                                            </td>
+                                                            <td id="zabuto_calendar_9ph_2021-04-28">
+                                                                <div id="zabuto_calendar_9ph_2021-04-28_day"
+                                                                    class="day">28</div>
+                                                            </td>
+                                                            <td id="zabuto_calendar_9ph_2021-04-29">
+                                                                <div id="zabuto_calendar_9ph_2021-04-29_day"
+                                                                    class="day">29</div>
+                                                            </td>
+                                                            <td id="zabuto_calendar_9ph_2021-04-30">
+                                                                <div id="zabuto_calendar_9ph_2021-04-30_day"
+                                                                    class="day">30</div>
+                                                            </td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <div class="legend" id="zabuto_calendar_9ph_legend"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        const listF = [];
+        const imagesWill = [];
+        const video = [];
+        const listImgDel = [];
+        const videoState = [];
+        var userEmail = "<%= user.email %>"
+        var userID = "<%= userID %>"
+        var mainURL = "http://localhost:8080";
+        var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        function createModalForNewsFeed(id_post, images) {
+
+            var html = '';
+            html += `<div class="modal fade" id="Modal-` + id_post + `"tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <div id="myCarousel-` + id_post + `" class="carousel slide" data-ride="carousel">
+                                        <!-- Wrapper for slides -->
+                                        <div id="listhinh-` + id_post + `" class="carousel-inner">`
+
+            if (images.length > 0) {
+                images.forEach(e => {
+                    var idimgTag = "img-preview-" + id_post + "-" + e.id;
+                    html += `<div class="item">
+                                                        <img id="`+ idimgTag + `" class="listFile-` + id_post + `" style="width:100%;max-height:400px;" src="` + mainURL + "/" + e.image + `">
+                                                    </div>`
+                });
+            } else {
+                html += `<div class="item active">
+                                <img src="https://media.macphun.com/img/uploads/customer/how-to/579/15531840725c93b5489d84e9.43781620.jpg"
+                                    alt="Los Angeles" style="width:100%;max-height:400px;">
+                            </div>`
+            }
+
+            html += `</div>
+                                        <!-- Left and right controls -->
+                                        <a class="left carousel-control" href="#myCarousel-` + id_post + `" data-slide="prev">
+                                            <span class="glyphicon glyphicon-chevron-left"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="right carousel-control" href="#myCarousel-` + id_post + `" data-slide="next">
+                                            <span class="glyphicon glyphicon-chevron-right"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div>`;
+            return html;
+        }
+        function doPost(form) {
+            var ajax = new XMLHttpRequest();
+            ajax.open("POST", "/addPost", true);
+            ajax.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var response = JSON.parse(this.responseText);
+                    alert(response.message);
+                    if (response.status == "success") {
+                        location.reload();
+                    }
+                }
+            };
+            var formData = new FormData();
+            for (var i = 0; i < listF.length; i++) {
+                formData.append("litsfile", listF[i].file);
+            }
+            formData.append("litsfile", video[0]);
+            formData.append("caption", $('#captionpost').val());
+            formData.append("type", "post");
+            ajax.send(formData);
+            return false;
+        }
+        function doEdit(form) {
+            var ajax = new XMLHttpRequest();
+            ajax.open("POST", "/editPost", true);
+            ajax.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var response = JSON.parse(this.responseText);
+                    alert(response.message);
+                    if (response.status == "success") {
+                        location.reload();
+                    }
+                }
+            };
+            var formData = new FormData();
+            for (var i = 0; i < imagesWill.length; i++) {
+                formData.append("litsfile", imagesWill[i].file);
+            }
+            if (video.length > 0) {
+                console.log(video[0]);
+                formData.append("litsfile", video[0]);
+            }
+            formData.append("id_post", $(form).attr('id').split('form-post-')[1]);
+            formData.append("videoState", videoState);
+            formData.append("listImgDel", listImgDel);
+            formData.append("caption", $(form).find("textarea").val());
+            formData.append("type", "Edit");
+            ajax.send(formData);
+            return false;
+        }
+        function showNewsfeed() {
+            var ajax = new XMLHttpRequest();
+            ajax.open("POST", "/getNewsfeed", true);
+
+            ajax.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+
+                    var response = JSON.parse(this.responseText);
+
+                    var html = "";
+                    for (var a = 0; a < response.data.length; a++) {
+                        var data = response.data[a];
+
+                        html += '<div class="central-meta item">';
+                        html += '<div class="user-post">';
+                        html += '<div class="friend-info">';
+
+                        html += '<figure>';
+                        html += '<img src="' + linkpt + '" style="width: 45px; height: 45px; object-fit: cover;">';
+                        html += '</figure>';
+
+                        html += '<div class="friend-name">';
+                        html += '<ins>';
+
+                        if (data.type == "post") {
+                            html += '<a href="/user/' + data.user.username + '">';
+                            html += data.user.name;
+                            html += '</a>';
+                        }
+                        else {
+                            html += data.user.name;
+                        }
+                        html += `<a data-toggle="modal" href="#exampleModal" class="float-right">Edit</a>`;
+                        html += `<a class="float-right">Xoa</a>`;
+                        html += '</ins>';
+
+                        var createdAt = new Date(data.createdAt);
+                        var date = createdAt.getDate() + "";
+                        date = date.padStart(2, "0") + " " + months[createdAt.getMonth()] + ", " + createdAt.getFullYear();
+
+                        html += '<span>Published: ' + date + '</span>';
+                        html += '</div>';
+
+                        html += '<div class="post-meta">';
+
+                        html += '<div class="description">';
+                        html += '<p>';
+                        html += data.caption;
+                        html += '</p>';
+                        html += '</div>';
+
+                        if (data.image.length > 0) {
+                            data.image.forEach(element => {
+                                html += '<img src="' + mainURL + "/" + element.image + '">';
+                            });
+                            //html += '<img src="' + mainURL + "/" + data.image[0].image + '">';
+                        }
+
+                        if (data.video != "") {
+                            html += '<video style="height: 359px; width: 100%;" controls src="' + mainURL + "/" + data.video + '"></video>';
+                        }
+                        html += createLikesSection(data);
+                        html += '</div>';
+                        html += '</div>';
+                        // begin comment
+                        html += "<div id='post-comments-" + data._id + "'>";
+                        html += createCommentsSection(data);
+                        html += "</div>";
+
+                        // end comment
+                        html += '</div>';
+                        html += '</div>';
+                    }
+                    document.getElementById("newsfeed").innerHTML = html;
+                }
+            };
+
+            var formData = new FormData();
+            ajax.send(formData);
+        }
+        function showNewsfeed1() {
+            var ajax = new XMLHttpRequest();
+            ajax.open("POST", "/getNewsfeed", true);
+
+            ajax.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+
+                    var response = JSON.parse(this.responseText);
+                    console.log(response);
+
+                    var html = "";
+                    for (var a = 0; a < response.data.length; a++) {
+                        var data = response.data[a];
+                        var id_post = data._id;
+                        html += '<div class="central-meta item">';
+                        html += '<div class="user-post">';
+                        html += '<div class="friend-info">';
+
+                        html += '<figure>';
+                        html += '<img src="' + data.user.profileImage + '" style="width: 45px; height: 45px; object-fit: cover;">';
+                        html += '</figure>';
+
+                        html += '<div class="friend-name">';
+                        html += '<ins>';
+
+                        if (data.type == "post") { 
+                            html += '<a href="/user/' + data.user.username + '">';
+                            html += data.user.name;
+                            html += '</a>';
+                        }
+                        else {
+                            html += data.user.name;
+                        }
+                        if(userEmail == data.user.email){
+                            html += `<div class="float-right">
+                                                <i class="fas fa-ellipsis-h action-icon"></i>
+                                                <ul class="action-menu">
+                                                    <li class="action-menu__item">
+                                                        <a style="cursor:pointer" id="btn-edit-confirm-` + id_post + `" class="btn_edit float-right btn-action">Edit</a>
+                                                    </li>
+                                                    <li class="action-menu__item">
+                                                        <a style="cursor:pointer" id="btn-edit-toDelete-confirm-` + id_post + `" class="btn_edit_toDelete float-right btn-action">Delete</a>
+                                                    </li>
+                                                </ul>
+                                            </div>`;
+                        }
+                        
+                        //html += `<a class="float-right">Xoa</a>`;
+                        html += '</ins>';
+
+                        var createdAt = new Date(data.createdAt);
+                        var date = createdAt.getDate() + "";
+                        date = date.padStart(2, "0") + " " + months[createdAt.getMonth()] + ", " + createdAt.getFullYear() + ", " + createdAt.toLocaleTimeString();
+
+                        html += '<span>Published: ' + date + '</span>';
+                        html += '</div>';
+
+                        html += '<div class="post-meta">';
+                        html += '<form method="post" id="form-post-' + id_post + '" onsubmit="return doEdit(this);" enctype="multipart/form-data">';
+                        html += '<div class="description">';
+                        html += '<p id="captionpost-' + id_post + '">';
+                        html += data.caption;
+                        html += '</p>';
+                        html += '</div>';
+                        html += '<div class="attachments">';
+                        html += '<ul>';
+                        html += '<li id="listimg-' + id_post + '">';
+                        if (data.image.length > 0) {
+                            html += `<div class = "img-container">
+                                        `+ '<img id="img-preview-' + id_post + '" src="' + mainURL + "/" + data.image[0].image + '">' +
+                                `<div class = "content">
+                                            <div id="zoom-text-`+ id_post + `" class = "zoom-text">
+                                                Click
+                                            </div>
+                                            <h2>Landscape One</h2>
+                                        </div>
+                                    </div>`
+
+                            // data.image.forEach(element => {
+                            //     html += '<img src="' + mainURL + "/" + element.image + '">';
+                            // });
+                            $('#Modal-').parent().append(createModalForNewsFeed(id_post, data.image));
+                            var listhinh_id = '#listhinh-' + id_post + " div";
+                            $(listhinh_id).first().addClass("active");
+                        }
+                        // else{
+                        //     $('#Modal-').parent().append(createModalForNewsFeed(id_post,data.image));
+                        // }
+                        html += '</li>';
+
+                        html += '<li>';
+                        if (data.video != "") {
+                            html += '<video class="video-preview-' + id_post + '" id="video-preview-' + id_post + '" style="height: 359px; width: 100%;" controls src="' + mainURL + "/" + data.video + '"></video>';
+                        }
+                        else {
+                            html += '<video class="video-preview-' + id_post + '" id="video-preview-' + id_post + '" style="display: none;height: 359px; width: 100%;" controls></video>';
+                        }
+                        html += '</li>';
+                        html += '</ul>';
+                        html += '</div>';
+                        html += '</form>';
+                        html += createLikesSection(data);
+                        html += '</div>';
+                        html += '</div>';
+                        // begin comment
+                        html += "<div id='post-comments-" + data._id + "'>";
+                        html += createCommentsSection(data);
+                        html += "</div>";
+                        // end comment
+                        html += '</div>';
+                        html += '</div>';
+                    }
+                    document.getElementById("newsfeed").innerHTML = html;
+                    eventEditClick();
+                    eventEditoDeleteClick();
+                    showDetailImages();
+                }
+            };
+
+            var formData = new FormData();
+            ajax.send(formData);
+        }
+        function createCommentsSection(data) {
+            var html = "";
+
+            html += '<div class="coment-area">';
+            html += '<ul class="we-comet" style="max-height: 300px; overflow-y: scroll;">';
+
+            data.comments = data.comments.reverse();
+            for (var b = 0; b < data.comments.length; b++) {
+                var comment = data.comments[b];
+
+                html += '<li>';
+                html += '<div class="comet-avatar">';
+                html += '<img src="' + comment.user.profileImage + '">';
+                html += '</div>';
+
+                html += '<div class="we-comment">';
+                html += '<div class="coment-head">';
+                html += '<h5><a href="/">' + comment.user.name + '</a></h5>';
+
+                var createdAt = new Date(comment.createdAt);
+                var date = createdAt.getDate() + "";
+                date = date.padStart(2, "0") + " " + months[createdAt.getMonth()] + ", " + createdAt.getFullYear() + ", " + createdAt.toLocaleTimeString();
+
+                html += '<span>' + date + '</span>';
+                html += '<a class="we-reply" href="javascript:void(0);" data-post-id="' + data._id + '" data-comment-id="' + comment._id + '" onclick="prepareToReply(this);" title="Reply"><i class="fa fa-reply"></i></a>';
+                html += '</div>';
+
+                html += '<p>' + comment.comment + '</p>';
+                html += '</div>';
+
+                html += '<ul>';
+
+                comment.replies = comment.replies.reverse();
+
+                for (var c = 0; c < comment.replies.length; c++) {
+                    var reply = comment.replies[c];
+
+                    html += '<li>';
+                    html += '<div class="comet-avatar">';
+                    html += '<img src="' + reply.user.profileImage + '">';
+                    html += '</div>';
+
+                    html += '<div class="we-comment">';
+                    html += '<div class="coment-head">';
+                    html += '<h5><a href="/">' + reply.user.name + '</a></h5>';
+
+                    var createdAt = new Date(reply.createdAt);
+                    var date = createdAt.getDate() + "";
+                    date = date.padStart(2, "0") + " " + months[createdAt.getMonth()] + ", " + createdAt.getFullYear() + ", " + createdAt.toLocaleTimeString();
+
+                    html += '<span>' + date + '</span>';
+                    html += '</div>';
+                    html += '<p>' + reply.reply + '</p>';
+                    html += '</div>';
+                    html += '</li>';
+                }
+                html += '</ul>';
+
+                html += '</li>';
+            }
+            html += '</ul>';
+
+            html += '<ul class="we-comet">';
+            html += '<li class="post-comment">';
+            html += '<div class="comet-avatar">';
+            html += '<img src="' + linkpt + '">';
+            html += '</div>';
+            html += '<div class="post-comt-box">';
+            html += '<form method="post" onsubmit="return doPostComment(this);">';
+            html += '<input type="hidden" name="_id" value="' + data._id + '">';
+            html += '<textarea name="comment" placeholder="Post your comment"></textarea>';
+            html += '<button type="submit">Post</button>';
+            html += '</form>';
+            html += '</div>';
+            html += '</li>';
+            html += '</ul>';
+            html += '</div>';
+            return html;
+        }
+        function prepareToReply(self) {
+            $("#replyModal input[name='postId']").val(self.getAttribute("data-post-id"));
+            $("#replyModal input[name='commentId']").val(self.getAttribute("data-comment-id"));
+            $("#replyModal").modal('show');
+        }
+        function doPostReply(form) {
+            var ajax = new XMLHttpRequest();
+            ajax.open("POST", "/postReply", true);
+
+            ajax.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+
+                    var response = JSON.parse(this.responseText);
+                    alert(response.message);
+
+                    if (response.status == "success") {
+                        form.reply.value = "";
+                        $("#replyModal").modal("hide");
+                        var commentsHtml = createCommentsSection(response.updatePost);
+                        document.getElementById("post-comments-" + form.postId.value).innerHTML = commentsHtml;
+                    }
+                }
+            };
+
+            var formData = new FormData(form);
+            formData.append("accessToken", localStorage.getItem("accessToken"));
+            ajax.send(formData);
+
+            return false;
+        }
+        function doPostComment(form) {
+            var ajax = new XMLHttpRequest();
+            ajax.open("POST", "/postComment", true);
+
+            ajax.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+
+                    var response = JSON.parse(this.responseText);
+                    alert(response.message);
+                    if (response.status == "success") {
+                        form.comment.value = "";
+                        var commentsHtml = createCommentsSection(response.updatePost);
+                        document.getElementById("post-comments-" + form._id.value).innerHTML = commentsHtml;
+                        var comments = parseInt(document.getElementById("count-post-comments-" + form._id.value).innerHTML);
+                        comments++;
+                        document.getElementById("count-post-comments-" + form._id.value).innerHTML = comments;
+                    }
+                }
+            };
+
+            var formData = new FormData(form);
+            ajax.send(formData);
+
+            return false;
+        }
+        function createLikesSection(data) {
+            localStorage.setItem("accessToken", "aaaa");
+            //alert(localStorage.getItem("accessToken") + userID)
+
+            var isLiked = false;
+            for (var b = 0; b < data.likers.length; b++) {
+                var liker = data.likers[b];
+                if (liker._id == userID) {
+                    isLiked = true;
+                    break;
+                }
+            }
+            var html = "";
+
+            html += '<div class="we-video-info">';
+            html += '<ul>';
+
+            html += '<li>';
+
+            var className = "";
+            if (isLiked) {
+                className = "like";
+            } else {
+                className = "none";
+            }
+
+            html += '<span class="' + className + '" onclick="toggleLikePost(this);" data-id="' + data._id + '">';
+            html += '<i class="fa fa-thumbs-o-up"></i>';
+            html += '<ins>' + data.likers.length + '</ins>';
+            html += '</span>';
+
+            html += '</li>';
+
+            html += '<li>';
+            html += '<span class="comment" title="Comments">';
+            html += '<i class="fa fa-comments-o"></i>';
+            html += '<ins id="count-post-comments-' + data._id + '">' + data.comments.length + '</ins>';
+            html += '</span>';
+            html += '</li>';
+
+            html += '<li>';
+            html += '<span class="share" onclick="sharePost(this);" data-id="' + data._id + '">';
+            html += '<i class="glyphicon glyphicon-share"></i>';
+            html += '<ins>' + data.shares.length + '</ins>';
+            html += '</span>';
+            html += '</li>';
+
+            html += '</ul>';
+            html += '</div>';
+
+            return html;
+        }
+        function toggleLikePost(self) {
+            var _id = self.getAttribute("data-id");
+
+            var ajax = new XMLHttpRequest();
+            ajax.open("POST", "/toggleLikePost", true);
+
+            ajax.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+
+                    var response = JSON.parse(this.responseText);
+
+                    if (response.status == "success") {
+                        self.className = "like";
+
+                        var likes = parseInt(self.querySelector("ins").innerHTML);
+                        likes++;
+                        self.querySelector("ins").innerHTML = likes;
+                    }
+                    if (response.status == "unliked") {
+                        self.className = "none";
+
+                        var likes = parseInt(self.querySelector("ins").innerHTML);
+                        likes--;
+                        self.querySelector("ins").innerHTML = likes;
+                    }
+                    if (response.status == "error") {
+                        alert(response.message);
+                    }
+                }
+            };
+
+            var formData = new FormData();
+            formData.append("li", listImgDel);
+            ajax.send(formData);
+        }
+        var socket  =  io('');
+        socket.emit('abc',"tao")
+    </script>
+    <%- include ("shares/footer") %>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/acd9ed5e69.js" crossorigin="anonymous"></script>
+
+
+    <title>Notifications</title>
+</head>
+<body>
+    <header id="header">
+        <div class="banner">
+            <div class="header__logo">
+                <a href="/">
+                    <img class="header__logo--img" src="https://stdportal.tdtu.edu.vn/Content/images/image.png" alt="TDT logo">
+                </a>
+            </div>
+            <div class="header__navbar">
+                <ul class="nav-list">
+                    <li class="nav-list__item">
+                        <a href="/" class="nav-list__item--link">Trang chủ</a>
+                    </li>
+                    <li class="nav-list__item">
+                        <a href="/notifications/pages/1" class="nav-list__item--link">Trang Thông báo</a>
+
+                    </li>
+                </ul>
+            </div>
+            <div class="header__banner--right">
+                <div class="user-info">
+                    <% if(currentUser.role == 'khoa') { %>
+                        <a href="/faculty/<%= currentUser.fcId %>" class="user-info__link info__link">
+                            <%= currentUser.facultyName %> 
+                        </a>
+                    <% } else if(currentUser.role == 'student') { %> 
+                        <a href="#" class="user-info__link info__link">
+                            <%= currentUser.name %> 
+                        </a>
+                        
+                    <% } %>     
+                </div>
+                <a href="/logout">Logout
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="grid">
+                <div class="search-form-section">
+                    <form id="search-form" class="search-form">
+                        <select name="filter" id="filter-select">
+                            <option selected value="">Chọn Phòng khoa</option>
+                            <% if(faculties) { %> 
+                                <% faculties.forEach(faculty => { %>
+                                    <option value="<%= faculty.fcId %>"><%= faculty.facultyName %> </option>
+                                <% }) %> 
+                            <% } %> 
+                            
+                        </select>
+                        <button id="btn-filter" type="submit" class="btn btn-search">Tìm kiếm</button>
+                    </form>
+                </div>
+        
+                <div class="notification-section">
+                    <% if(notifications) { %>
+                        <% notifications.forEach(noti => { %>
+                            <div class="row">
+                                <div class="notification">
+                                    <div class="notification__title">
+                                        <span class="notification__title--text">
+                                            <%= noti.title %>     
+                                        </span>
+                                    </div>
+                                    <div class="notification__brief">
+                                        <span class="notification__brief--text">
+                                           <%= noti.briefText %> 
+                                        </span>
+                                    </div>
+                                    <div class="notification__footer">
+                                        <div class="footer__detail">
+                                            <a href="/notifications/detail/<%= noti._id %> " class="footer__detail--link">Chi tiết thông báo</a>
+                                        </div>
+                                        <div class="footer__info">
+                                            <div class="footer__info--owner"><%= noti.owner %> </div>
+                                            <div class="footer__info--date">Ngày đăng: <%= noti.createdAt.toLocaleDateString() %></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+            
+                        <% }) %> 
+                    <% } %> 
+                </div>
+        
+                <% if (pages > 0) { %>
+                    <ul class="pagination text-center">
+                        <% if (current == 1) { %>
+                            <li class="pagination-item item-first disabled"><a>First</a></li>
+                        <% } else { %>
+                            <li class="pagination-item item-first" ><a href="/notifications/filter/pages/1/?filter=<%= filter %> ">First</a></li>
+                        <% } %>
+                        <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+                        <% if (i !== 1) { %>
+                            <li class="pagination-item disabled"><a>...</a></li>
+                        <% } %>
+                        <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                            <% if (i == current) { %>
+                                <li class="pagination-item active"><a><%= i %></a></li>
+                            <% } else { %>
+                                <li class="pagination-item "><a href="/notifications/filter/pages/<%= i %>/?filter=<%= filter %>"><%= i %></a></li>
+                            <% } %>
+                            <% if (i == Number(current) + 4 && i < pages) { %>
+                                <li class="pagination-item disabled"><a>...</a></li>
+                            <% } %>
+                        <% } %>
+                        <% if (current == pages) { %>
+                            <li class="pagination-item item-last disabled"><a>Last</a></li>
+                        <% } else { %>
+                            <li class="pagination-item item-last"><a href="/notifications/filter/pages/<%= pages %>/?filter=<%= filter %>">Last</a></li>
+                        <% } %>
+                    </ul>
+                <% } %>
+        </div>
+       
+    </div>
+    <script src="/javascripts/main.js"></script>
+</body>
+</html>

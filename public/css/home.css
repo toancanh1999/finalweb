@@ -1,0 +1,228 @@
+.thong-bao-khan {
+    color: black !important;
+}
+
+ul.todo-list li {
+    background-color: #f6fafb;
+}
+
+    ul.todo-list li:hover {
+        /*cursor: default !important;*/
+        cursor: pointer !important;
+    }
+
+.tb-khan {
+    color: #0061AD !important;
+    font-weight: bold !important;
+}
+
+.tb-khan:hover {
+    color: red !important;
+    font-size: 14px !important;
+    cursor:pointer!important;
+}
+
+.btn-xemtatca {
+    color: #0061AD !important;
+    font-weight: bold !important;
+}
+
+.btn-xemtatca:hover {
+    cursor: pointer !important;
+}
+
+.message {
+    margin-left: 0px !important;
+}
+
+.out {
+    text-align: left !important;
+    border-left: 3px solid #2baf2b !important;
+    border-right: none !important;
+}
+
+ul.chats li {
+    margin: 10px auto !important;
+}
+
+    ul.chats li.out .message {
+        margin-right: 0px !important;
+        text-align: left !important;
+        border-right: none !important;
+    }
+
+.chats {
+    max-height: 500px !important;
+    height: auto !important;
+    overflow-y: scroll !important;
+    overflow-x: hidden !important;
+}
+
+.div-tb-moi {
+    height: auto !important;
+    max-height: 500px !important;
+    overflow: hidden !important;
+    padding-bottom: 10px !important;
+    background-color: #FFFFFF !important;
+    display: flex !important;
+}
+
+.chat-scroller {
+    max-height: 500px !important;
+    height: auto !important;
+}
+
+.portlet .portlet-body {
+    padding: 0px !important;
+}
+
+.head-tb-moi {
+    color: black !important;
+}
+
+.slimScrollDiv {
+    height: auto !important;
+    max-height: 800px !important;
+    min-height:100px !important;
+}
+
+@keyframes flickerAnimation {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-o-keyframes flickerAnimation {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes flickerAnimation {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes flickerAnimation {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.tb-moi {
+    width: 25px;
+    height: 25px;
+    -webkit-animation: flickerAnimation 1s infinite;
+    -moz-animation: flickerAnimation 1s infinite;
+    -o-animation: flickerAnimation 1s infinite;
+    animation: flickerAnimation 1s infinite;
+    float: left !important;
+}
+
+.tb-ghim {
+    width: 25px;
+    height: 25px;
+    float:left;
+}
+
+.req-img {
+    float:left !important;
+    width: 20px;
+    height: 20px;
+    -webkit-animation: flickerAnimation 1s infinite;
+    -moz-animation: flickerAnimation 1s infinite;
+    -o-animation: flickerAnimation 1s infinite;
+    animation: flickerAnimation 1s infinite;
+}
+
+.chat-datetime {
+    color: #686363 !important;
+    font-style: italic !important;
+}
+
+.tieu-de {
+    color: black !important;
+    font-weight: bold !important;
+}
+
+    .tieu-de:hover {
+        color: red !important;
+        font-size: 14px !important;
+        cursor: pointer !important;
+    }
+
+.chat-name {
+    color: #b02424 !important;
+}
+
+.icon-tb-moi {
+    width: 20px;
+    height: 20px;
+}
+
+ul.chats li.in .message {
+    background: #FFF !important;
+    border-left: 3px solid #827e7e !important;
+}
+
+ul.chats li.out {
+    border-left: 3px solid #03a9f4 !important;
+}
+ul.chats li.out .message {
+    background: #cae8ff !important;
+}
+
+@media only screen and (max-width:600px) {
+    #prev {
+        display:none !important;
+    }
+    #next {
+        display:none !important;
+    }
+    
+    .col-xs-12{
+        padding-left:0px !important;
+    }
+
+}
+
+.li-tb-khan:nth-child(odd) {
+    background-color: #f6fafb !important;
+}
+
+.li-tb-khan {
+    background-color: #f9f9f9 !important;
+}

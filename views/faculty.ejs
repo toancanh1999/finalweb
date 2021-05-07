@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/acd9ed5e69.js" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Quản lý thông báo</title>
+</head>
+
+<body>
+    <header id="header scroll-down">
+        <div class="banner">
+            <div class="header__logo">
+                <a href="/">
+                    <img class="header__logo--img" src="https://stdportal.tdtu.edu.vn/Content/images/image.png"
+                        alt="TDT logo">
+                </a>
+            </div>
+            <div class="header__navbar">
+                <ul class="nav-list">
+                    <li class="nav-list__item">
+                        <a href="/" class="nav-list__item--link">Trang chủ</a>
+                    </li>
+                    <li class="nav-list__item">
+                        <a href="/notifications/pages/1" class="nav-list__item--link">Trang Thông báo</a>
+
+                    </li>
+                </ul>
+            </div>
+            <div class="header__banner--right">
+                <div class="user-info">
+                    <a href="/faculty/<%= user.id %>" class="user-info__link info__link">
+                        <%= user.name %>
+                    </a>
+                </div>
+
+                <a href="/logout">
+                    Logout
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="grid">
+            <% if(user ) { %>
+                <div class="user-section">
+                    <div class="user-info">
+                        <div class="user-info__name">
+                            Hello, <strong>
+                                <%= user.name %>
+                            </strong>
+                        </div>
+                    </div>
+
+                    <div class="user-section--create">
+                        <button data-owner="<%= user.role %>" id="btn-new-notification"
+                            class="btn btn-create-faculty">Tạo Thông báo mới</button>
+                    </div>
+                </div>
+                <% } %>
+
+                    <div class="notification-section">
+                        <% if(notifications) { %>
+                            <% notifications.forEach(noti=> { %>
+                                <div class="row">
+                                    <div class="notification">
+                                        <div class="notification__header">
+                                            <div class="notification__title">
+                                                <span class="notification__title--text">
+                                                    <%= noti.title %>
+                                                </span>
+                                            </div>
+                                            <div class="notification__action">
+                                                <i class="fas fa-ellipsis-h action-icon"></i>
+                                                <ul class="action-menu">
+                                                    <li class="action-menu__item">
+                                                        <button data-owner="<%= noti.owner %>"
+                                                            data-title="<%= noti.title %>" data-id="<%= noti._id %>"
+                                                            data-categories="<%= noti.categories %>"
+                                                            data-content="<%= noti.content %>"
+                                                            data-brief-text="<%= noti.briefText %>"
+                                                            class="btn-action btn-update" type="button">Chỉnh sửa
+
+                                                        </button>
+                                                    </li>
+                                                    <li class="action-menu__item">
+                                                        <button data-id="<%= noti._id %>" class="btn-action btn-delete"
+                                                            type="button">Xóa</button>
+                                                    </li>
+                                                </ul>
+
+                                            </div>
+                                        </div>
+                                        <div class="notification__brief">
+                                            <span class="notification__brief--text">
+                                                <%= noti.briefText %>
+                                            </span>
+                                        </div>
+                                        <div class="notification__footer">
+                                            <div class="footer__detail">
+                                                <a href="/notification/detail/<%= noti._id %> "
+                                                    class="footer__detail--link">Chi tiết thông báo</a>
+                                            </div>
+                                            <div class="footer__info">
+                                                <div class="footer__info--owner">
+                                                    <%= noti.owner %>
+                                                </div>
+                                                <div class="footer__info--date">Ngày đăng: <%= new
+                                                        Date(noti.createdAt).toLocaleDateString() %>
+                                                        <%= new Date(noti.createdAt).toLocaleTimeString() %>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <% }) %>
+                                    <% } else { %>
+                                        <div class="empty-alert">Chưa có thông báo nào</div>
+                                        <% } %>
+                    </div>
+
+        </div>
+
+    </div>
+
+    <!-- Create new notification -->
+    <div class="modal fade" id="modalNewNotif" tabindex="-1" role="dialog" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="modal__title">
+                    <h2>Create new Notification</h2>
+                </div>
+                <form method="post" action="/notifications/<%= user._id %> ">
+                    <div class="form-group">
+                        <label for="title">Tiêu đề</label>
+                        <input type="text" name="title" placeholder="Nhập tiêu đề...">
+                    </div>
+                    <div class="form-group">
+                        <label for="categories">Chuyên mục:</label>
+                        <input type="text" name="categories" placeholder="Nhập tên chuyên mục...">
+                    </div>
+                    <div class="form-group">
+                        <label for="briefText">Tóm tắt:</label>
+                        <input type="text" name="briefText" placeholder="Tóm tắt nội dung...">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="content">Nội dung</label>
+                        <textarea name="content" id="" cols="30" rows="10"></textarea>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button id="btn-confirm-create" type="submit" class="btn btn-confirm-create">Tạo mới</button>
+                        <button class="btn btn-cancel ">Hủy</button>
+                    </div>
+
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirm delete -->
+    <div class="modal fade" id="confirm-delete-dialog" tabindex="-1" role="dialog" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Xóa bài viết</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    Bạn có chắc rằng muốn xóa <strong id="delete-username">Bài viết này</strong>?
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button data-id="???" data-name="???" id="btn-delete-confirmed" type="button"
+                        class="btn btn-danger">Xóa</button>
+                    <button type="button" class="btn btn-dark" data-dismiss="modal">Đóng</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- End Confirm delete -->
+
+    <form id='delete-noti-form' method="POST" name="delete-course-form"></form>
+
+
+    <!-- modal update -->
+    <div class="modal fade" id="modal-update" tabindex="-1" role="dialog" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="modal__title">
+                    <h2>Chỉnh sửa thông báo</h2>
+                </div>
+                <form id="noti-update-form" method="POST">
+                    <div class="form-group">
+                        <label for="title">Tiêu đề</label>
+                        <input id="title" value="" type="text" value="" name="title" placeholder="Nhập tiêu đề...">
+                    </div>
+                    <div class="form-group">
+                        <label for="categories">Chuyên mục:</label>
+                        <input id="categories" value="" type="text" name="categories"
+                            placeholder="Nhập tên chuyên mục...">
+                    </div>
+                    <div class="form-group">
+                        <label for="briefText">Tóm tắt:</label>
+                        <input id="briefText" value="" type="text" name="briefText" placeholder="Tóm tắt nội dung...">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="content">Nội dung</label>
+                        <textarea id="content" value="" name="content" id="" cols="30" rows="10"></textarea>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button data-id="???" id="btn-confirm-update" type="submit" class="btn btn-confirm-create">Cập
+                            nhật</button>
+                        <a class="btn btn-cancel ">Hủy</a>
+                    </div>
+
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        let btnCreateNewNoti = document.getElementById('btn-new-notification')
+        let btnConfirmCreate = document.getElementById('btn-confirm-create')
+        let notiUpdateForm = document.getElementById('noti-update-form')
+        let deleteNotiForm = document.getElementById('delete-noti-form')
+        if (btnCreateNewNoti) {
+            btnCreateNewNoti.onclick = (e) => {
+                $('#modalNewNotif').modal('show');
+            }
+        }
+        if (btnConfirmCreate) {
+            btnConfirmCreate.onclick = (e) => {
+                $('#modalNewNotif').modal('hide');
+            }
+        }
+        $('.action-icon').on('click', (e) => {
+            $(e.target).siblings('ul').toggle();
+        })
+        $('.btn-update').on('click', (e) => {
+            $('#modal-update').modal('show');
+            const { id, owner, title, briefText, content, categories } = e.target.dataset
+            $('#owner').val(owner)
+            $('#title').val(title)
+            $('#briefText').val(briefText)
+            $('#content').val(content)
+            $('#categories').val(categories)
+            $('#btn-confirm-update').attr('data-id', id)
+        })
+        $('#btn-confirm-update').click(e => {
+            $('#modal-update').modal('hide');
+            const { id } = e.target.dataset
+            notiUpdateForm.action = '/notifications/update/' + id;
+            notiUpdateForm.submit()
+        })
+        $('.btn-cancel').click(e => {
+            $('.modal').modal('hide');
+        })
+        $('.btn-delete').click(e => {
+            const { id } = e.target.dataset
+            $('#btn-delete-confirmed').attr('data-id', id)
+            $('#confirm-delete-dialog').modal('show');
+        })
+        $('#btn-delete-confirmed').click(e => {
+            const { id } = e.target.dataset
+            deleteNotiForm.action = '/notifications/delete/' + id;
+            deleteNotiForm.submit()
+            $('#confirm-delete-dialog').modal('hide')
+        })
+    </script>
+</body>
+
+</html>

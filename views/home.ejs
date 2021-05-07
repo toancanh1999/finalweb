@@ -1,0 +1,63 @@
+<%- include ("shares/header") %>
+
+<section>
+    <header id="header">
+        <div class="banner">
+            <div class="header__logo">
+                <a href="/">
+                    <img class="header__logo--img" src="https://stdportal.tdtu.edu.vn/Content/images/image.png" alt="TDT logo">
+                </a>
+            </div>
+            <div class="header__navbar">
+                <ul class="nav-list">
+                    <li class="nav-list__item">
+                        <a href="/" class="nav-list__item--link">Trang chủ</a>
+                    </li>
+                    <li class="nav-list__item">
+                        <a href="/notifications/pages/1" class="nav-list__item--link">Trang Thông báo</a>
+
+                    </li>
+                </ul>
+            </div>
+            <div class="header__banner--right">
+                <div class="user-info">
+                    <% if(userProfile) { %>
+                        
+                        <a href="#" class="user-info__link"><%= userProfile.username %></a>
+                    <% } else if(faculty) { %> 
+                        <a href="/faculty/<%= faculty.fcId %>" class="user-info__link info__link">
+                            <%= faculty.facultyName %> 
+                        </a>
+                    <% } else { %>
+                        <a href="/admin"  class="user-info__link info__link">Admin</a>
+                    <% } %> 
+                </div>
+                <a href="/logout">
+                    Logout
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            </div>
+        </div>
+        
+    </header>
+
+    <div class="container">
+        <% if(faculty) { %>
+            <div class="user-section">
+                <div class="user-info">
+                    <div class="user-info__name">
+                        Hello, 
+                        <a href="/faculty/<%= faculty.fcId %> "><%= faculty.facultyName %> </a>
+                    </div>
+                </div>
+            </div>
+        <% } %> 
+        
+
+       
+    </div>
+</section>
+<script>
+
+</script>
+<%- include ("shares/footer") %>
