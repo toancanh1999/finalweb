@@ -1,15 +1,8 @@
 <%- include ("shares/header") %>
-    <section>
-        <div class="page-content">
+    <div id="section">
+        <div class="page-content" id="page-full">
             <div class="page-content">
-                <!-- <link href="css/home.css" rel="stylesheet">
-                <link rel="stylesheet" href="css/style.css">
-                <link rel="stylesheet" href="css/color.css">
-                <link rel="stylesheet" href="css/responsive.css">
-                <link rel="stylesheet" href="css/strip.css">
-                <link rel="stylesheet" href="css/responsive.css">
-                <link rel="stylesheet" href="css/main.css"> -->
-                <div class="page-content">
+                <div class="page-content" id="content-One">
                     <div id="tab-general">
                         <div class="row mbl">
                             <div class="col-md-8 col-xs-12">
@@ -28,7 +21,7 @@
 
                                 </div>
                             </div>
-                            <div class="col-md-4 col-xs-12">
+                            <div class="col-md-4 col-xs-12" id="page-ann">
                                 <div class="portlet box prolet-primary">
                                     <div class="portlet-header head-tb-moi">
                                         <div class="caption text-uppercase">
@@ -51,67 +44,22 @@
                                             style="position: relative; overflow: hidden; width: 100%; height: 270px;">
                                             <div class="chat-scroller"
                                                 style="overflow: hidden; width: 100%; height: 270px;">
-                                                <ul class="chats" id="ol_tb_moi">
+                                                <ul class="chats" id="ol_tb_moi" >
+                                                    <% poss.forEach((e)=>{%>
                                                     <li class="out">
                                                         <div class="message">
-                                                            <span class="chat-datetime">[Phòng Đại học] &nbsp;&nbsp; -
+                                                            <span class="chat-datetime"><%=e.owner%> &nbsp;&nbsp; -
                                                                 09/04/2021</span>
                                                             <a class="tb-moi-click"
                                                                 onclick="openInNewTab('/ThongBao/Detail/135709')"
                                                                 data-id="135709" data-donvi="P03"><span
                                                                     class="chat-body tieu-de"
-                                                                    title="DANH SÁCH THI KỸ NĂNG THỰC HÀNH CHUYÊN MÔN THÁNG 04/2021">DANH
-                                                                    SÁCH THI KỸ NĂNG THỰC HÀNH CHUYÊN MÔN THÁNG
-                                                                    04/2021</span></a>
-                                                            <span class="chat-body">Sinh viên xem danh sách không đủ
-                                                                điều kiện dự thi và danh sách dự thi Kỹ năng thực hành
-                                                                chuyên môn tháng 04/2021 trong thông báo....</span>
+                                                                    title="DANH SÁCH THI KỸ NĂNG THỰC HÀNH CHUYÊN MÔN THÁNG 04/2021"><%=e.title%> </span></a>
+                                                            <span class="chat-body" ><%=e.brieftText%> </span>
                                                         </div>
                                                     </li>
-                                                    <li class="in">
-                                                        <div class="message">
-                                                            <span class="chat-datetime">[TDT Creative Language Center]
-                                                                &nbsp;&nbsp; - 09/04/2021</span>
-                                                            <a class="tb-moi-click"
-                                                                onclick="openInNewTab('/ThongBao/Detail/135711')"
-                                                                data-id="135711" data-donvi="P15"><span
-                                                                    class="chat-body tieu-de"
-                                                                    title="Thông báo về việc tổ chức cho sinh viên học bù và kiểm tra bù tại TDT CLC">Thông
-                                                                    báo về việc tổ chức cho sinh viên học bù và kiểm tra
-                                                                    bù tại TDT CLC</span></a>
-                                                            <span class="chat-body">Thông báo về việc tổ chức cho sinh
-                                                                viên học bù và kiểm tra bù tại TDT CLC</span>
-                                                        </div>
-                                                    </li>
-                                                    <li class="out">
-                                                        <div class="message">
-                                                            <span class="chat-datetime">[TDT Creative Language Center]
-                                                                &nbsp;&nbsp; - 09/04/2021</span>
-                                                            <a class="tb-moi-click"
-                                                                onclick="openInNewTab('/ThongBao/Detail/135710')"
-                                                                data-id="135710" data-donvi="P15"><span
-                                                                    class="chat-body tieu-de"
-                                                                    title="Thông báo về việc tổ chức cho sinh viên học bù và kiểm tra bù tại TDT CLC">Thông
-                                                                    báo về việc tổ chức cho sinh viên học bù và kiểm tra
-                                                                    bù tại TDT CLC</span></a>
-                                                            <span class="chat-body">Thông báo về việc tổ chức cho sinh
-                                                                viên học bù và kiểm tra bù tại TDT CLC</span>
-                                                        </div>
-                                                    </li>
-                                                    <li class="in">
-                                                        <div class="message">
-                                                            <span class="chat-datetime">[Viện chính sách kinh tế và kinh
-                                                                doanh (IBEP)] &nbsp;&nbsp; - 08/04/2021</span>
-                                                            <a class="tb-moi-click"
-                                                                onclick="openInNewTab('/ThongBao/Detail/135697')"
-                                                                data-id="135697" data-donvi="P48"><span
-                                                                    class="chat-body tieu-de"
-                                                                    title="Khai giảng khóa xuất nhập khẩu thực hành">Khai
-                                                                    giảng khóa xuất nhập khẩu thực hành</span></a>
-                                                            <span class="chat-body">Ngày 12/04/2021</span>
-                                                        </div>
-                                                    </li>
-                                                </ul>
+                                                    <%})%>
+                                     </ul>
                                             </div>
                                             <div class="slimScrollBar"
                                                 style="background: rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 482px;">
@@ -302,7 +250,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
     <script>
         const listF = [];
         const imagesWill = [];
@@ -597,7 +545,7 @@
                         html += '</div>';
                         html += '</div>';
                     }
-                    document.getElementById("newsfeed").innerHTML = html;
+                    $("#newsfeed").append(html);
                     eventEditClick();
                     eventEditoDeleteClick();
                     showDetailImages();

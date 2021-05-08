@@ -12,9 +12,8 @@
     <title>Notifications</title>
 </head>
 <body>
-    <h1>la trang nao</h1>
     <header id="header">
-        <h1>la trang nao</h1>
+        <h1>la trang naoadadada</h1>
         <div class="banner">
             <div class="header__logo">
                 <a href="/">
@@ -43,6 +42,10 @@
                             <%= currentUser.name %> 
                         </a>
                         
+                    <% } else { %>
+                        <a href="/admin" class="user-info__link info__link">
+                            Admin
+                        </a>
                     <% } %>     
                 </div>
                 <a href="/logout">Logout
@@ -59,7 +62,7 @@
                             <option selected value="">Chọn Phòng khoa</option>
                             <% if(faculties) { %> 
                                 <% faculties.forEach(faculty => { %>
-                                    <option value="<%= faculty.fcId %>"><%= faculty.facultyName %> </option>
+                                    <option value="<%= faculty._id %>"><%= faculty.name %> </option>
                                 <% }) %> 
                             <% } %> 
                             
@@ -88,8 +91,10 @@
                                             <a href="/notifications/detail/<%= noti._id %> " class="footer__detail--link">Chi tiết thông báo</a>
                                         </div>
                                         <div class="footer__info">
-                                            <div class="footer__info--owner"><%= noti.owner %> </div>
-                                            <div class="footer__info--date">Ngày đăng: <%= noti.createdAt.toLocaleDateString() %></div>
+                                            <div class="footer__info--owner"><%= list_falcul_name[noti.user] %> </div>
+                                            <div class="footer__info--date">Ngày đăng: <%= new
+                                                Date(noti.createdAt).toLocaleDateString() %>
+                                                <%= new Date(noti.createdAt).toLocaleTimeString() %></div>
                                         </div>
                                     </div>
                                 </div>
@@ -104,7 +109,7 @@
                         <% if (current == 1) { %>
                             <li class="pagination-item item-first disabled"><a>First</a></li>
                         <% } else { %>
-                            <li class="pagination-item item-first" ><a href="/notifications/filter/pages/1/?filter=<%= filter %> ">First</a></li>
+                            <li class="pagination-item item-first" ><a href="/notifications/pages/1">First</a></li>
                         <% } %>
                         <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
                         <% if (i !== 1) { %>
@@ -114,7 +119,7 @@
                             <% if (i == current) { %>
                                 <li class="pagination-item active"><a><%= i %></a></li>
                             <% } else { %>
-                                <li class="pagination-item "><a href="/notifications/filter/pages/<%= i %>/?filter=<%= filter %>"><%= i %></a></li>
+                                <li class="pagination-item "><a href="/notifications/pages/<%= i %>"><%= i %></a></li>
                             <% } %>
                             <% if (i == Number(current) + 4 && i < pages) { %>
                                 <li class="pagination-item disabled"><a>...</a></li>
@@ -123,13 +128,21 @@
                         <% if (current == pages) { %>
                             <li class="pagination-item item-last disabled"><a>Last</a></li>
                         <% } else { %>
-                            <li class="pagination-item item-last"><a href="/notifications/filter/pages/<%= pages %>/?filter=<%= filter %>">Last</a></li>
+                            <li class="pagination-item item-last"><a href="/notifications/pages/<%= pages %>">Last</a></li>
                         <% } %>
                     </ul>
                 <% } %>
         </div>
        
     </div>
-    <script src="/javascripts/main.js"></script>
+    <script>
+$('#filter-select').on('change', function () {
+          var url = $(this).val(); // get selected value
+          if (url) { // require a URL
+              window.location = '/notifications/pagesByFacul/' + url + '/1' // redirect
+          }
+          return false;
+      });
+    </script>
 </body>
 </html>

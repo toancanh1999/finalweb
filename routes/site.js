@@ -36,22 +36,31 @@ router.get('/', secured, (req, res) => {
       console.log('sucess')
     }
   })
+ 
+
   res.render('home', { title: "Profile", user: req.user, role: 'student', userID: req.user.id })
 })
 router.get('/home', secured, (req, res) => {
   const { role } = req.user;
   console.log(req.user)
-  switch (role) {
-    case 'student':
-      res.render('index', { title: "Profile", user: req.user, role: role, userID: req.user.id });
-      break;
-    case 'admin':
-      res.render('index', { title: "Profile", role: role, user: req.user, userID: req.user.id });
-      break;
-    default:
-      res.render('index', { title: "Profile", role: role, user: req.user, userID: req.user.id });
-      break;
+  req.app.db.collection("notifications").find({
   }
+  ).sort({
+    "createdAt": -1
+  }).limit(3).toArray((err,rel)=>{
+    switch (role) {
+      case 'student':
+        res.render('index', { title: "Profile", user: req.user, role: role, userID: req.user.id,poss:rel });
+        break;
+      case 'admin':
+        res.render('index', { title: "Profile", role: role, user: req.user, userID: req.user.id,poss:rel });
+        break;
+      default:
+        res.render('index', { title: "Profile", role: role, user: req.user, userID: req.user.id,poss:rel });
+        break;
+    }
+  })
+
 })
 router.post("/removePost", upload.any("litsfile"), function (request, result, err) {
   var id = request.body.id;
@@ -480,7 +489,7 @@ router.post("/getNewsfeed", function (request, result) {
       .sort({
         "createdAt": -1
       })
-      .limit(5)
+      .limit(2)
       .toArray(function (error, data) {
         result.json({
           "status": "success",

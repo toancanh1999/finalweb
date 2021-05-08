@@ -1,120 +1,65 @@
 <%- include ("shares/header") %>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://kit.fontawesome.com/acd9ed5e69.js" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.2/socket.io.min.js'></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-        var socket  =  io();
-    </script>
-    <title>Quản lý thông báo</title>
-</head>
-
-<body>
-    <header id="header scroll-down">
-        <div class="banner">
-            <div class="header__logo">
-                <a href="/">
-                    <img class="header__logo--img" src="https://stdportal.tdtu.edu.vn/Content/images/image.png"
-                        alt="TDT logo">
-                </a>
-            </div>
-            <div class="header__navbar">
-                <ul class="nav-list">
-                    <li class="nav-list__item">
-                        <a href="/" class="nav-list__item--link">Trang chủ</a>
-                    </li>
-                    <li class="nav-list__item">
-                        <a href="/notifications/pages/1" class="nav-list__item--link">Trang Thông báo</a>
-
-                    </li>
-                </ul>
-            </div>
-            <div class="header__banner--right">
-                <div class="user-info">
-                    <a href="/faculty/<%= user.id %>" class="user-info__link info__link">
-                        <%= user.name %>
-                    </a>
-                </div>
-
-                <a href="/logout">
-                    Logout
-                    <i class="fas fa-sign-out-alt"></i>
-                </a>
-            </div>
-        </div>
-    </header>
-    <div class="container">
-        <div class="grid">
-            <% if(user ) { %>
-                <div class="user-section">
-                    <div class="user-info">
-                        <div class="user-info__name">
-                            Hello, <strong>
-                                <%= user.name %>
-                            </strong>
-                        </div>
-                    </div>
-
-                    <div class="user-section--create">
-                        <button data-owner="<%= user.role %>" id="btn-new-notification"
-                            class="btn btn-create-faculty">Tạo Thông báo mới</button>
-                    </div>
+    <section>
+        <div class="page-content">
+            <div class="page-content">
+                <% if(user ) { %>
+                <div class="bar-add">
+                    <i class="fas fa-home"><a href="#" id="indexPage">   <%= user.name %></a> <i class="fas fa-chevron-right"></i>
+                    <button data-owner="<%= user.role %>" id="btn-new-notification"
+                        class="btn btn-create-faculty">Tạo thông báo mới</button>
+                    </i>
                 </div>
                 <% } %>
 
-                    <div class="notification-section">
+                <div class="containerABC">
+                    <div class="grid">
                         <% if(notifications) { %>
                             <% notifications.forEach(noti=> { %>
-                                <div class="row">
-                                    <div class="notification">
-                                        <div class="notification__header">
-                                            <div class="notification__title">
-                                                <span class="notification__title--text">
-                                                    <%= noti.title %>
-                                                </span>
-                                            </div>
-                                            <div class="notification__action">
-                                                <i class="fas fa-ellipsis-h action-icon"></i>
-                                                <ul class="action-menu">
-                                                    <li class="action-menu__item">
-                                                        <button data-owner="<%= noti.owner %>"
-                                                            data-title="<%= noti.title %>" data-id="<%= noti._id %>"
-                                                            data-categories="<%= noti.categories %>"
-                                                            data-content="<%= noti.content %>"
-                                                            data-brief-text="<%= noti.briefText %>"
-                                                            class="btn-action btn-update" type="button">Chỉnh sửa
-
-                                                        </button>
-                                                    </li>
-                                                    <li class="action-menu__item">
-                                                        <button data-id="<%= noti._id %>" class="btn-action btn-delete"
-                                                            type="button">Xóa</button>
-                                                    </li>
-                                                </ul>
-
-                                            </div>
-                                        </div>
-                                        <div class="notification__brief">
-                                            <span class="notification__brief--text">
-                                                <%= noti.briefText %>
+                        <div class="row">
+                            <div class="notification">
+                                <div class="notification__header">
+                                    <div class="notification__title" >
+                                        <div style="display: inline-block;" >
+                                            <span class="notification__title--text text-Big">
+                                             <%= noti.title %>                                            
                                             </span>
                                         </div>
-                                        <div class="notification__footer">
+                                        <br>
+                                        <span>
+                                            <%= noti.content %>
+                                        </span>
+                                    </div>
+                             
+                                    
+                                   
+
+                                    <div class="notification__action">
+                                        <i class="fas fa-ellipsis-h action-icon"></i>
+                                        <ul class="action-menu">
+                                            <li class="action-menu__item">
+                                                <button data-owner="<%= noti.owner %>"
+                                                    data-title="<%= noti.title %>" data-id="<%= noti._id %>"
+                                                    data-categories="<%= noti.categories %>"
+                                                    data-content="<%= noti.content %>"
+                                                    data-brief-text="<%= noti.briefText %>"
+                                                    class="btn-action btn-update" type="button">Chỉnh sửa
+
+                                                </button>
+                                            </li>
+                                            <li class="action-menu__item">
+                                                <button data-id="<%= noti._id %>" class="btn-action btn-delete"
+                                                    type="button">Xóa</button>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                
+                                </div>
+
+                                 <div class="notification__footer">
                                             <div class="footer__detail">
-                                                <a href="/notification/detail/<%= noti._id %> "
-                                                    class="footer__detail--link">Chi tiết thông báo</a>
+                                                <a href="/notifications/detail/<%= noti._id %> " class="footer__detail--link">Chi tiết thông báo</a>
+
                                             </div>
                                             <div class="footer__info">
                                                 <div class="footer__info--owner">
@@ -126,15 +71,81 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-
-                                <% }) %>
+                            </div>
+                        </div>
+                        <% }) %>
                                     <% } else { %>
                                         <div class="empty-alert">Chưa có thông báo nào</div>
                                         <% } %>
+                    <div class="page">
+                        <div class="pagination " >
+                            <a href="#">&laquo;</a>
+                            <a href="#">1</a>
+                            <a class="active" href="#">2</a>
+                            <a href="#">3</a>
+                            <a href="#">4</a>
+                            <a href="#">5</a>
+                            <a href="#">6</a>
+                            <a href="#">&raquo;</a>
+                          </div>
                     </div>
+                       
+                    </div>
+                </div>
 
+                
+
+            </div>
+
+        </div>
+        </div>
+    </section>
+
+      <!-- Create new notification -->
+    <div id="modalNewNotif" class="modal" >
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="containerForm">
+                <form method="post" onsubmit="return doCreateNoti(this)">
+                <div class="row">
+                  <div class="col-25">
+                    <label for="title">Tiêu đề</label>
+                </div>
+                  <div class="col-75">
+                    <input type="text" name="title" placeholder="Nhập tiêu đề...">
+                </div>
+                </div>
+                <div class="row">
+                  <div class="col-25">
+                    <label for="categories">Chuyên mục</label>
+                </div>
+                  <div class="col-75">
+                    <input type="text" name="categories" placeholder="Nhập tên chuyên mục...">
+                </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="briefText">Tóm tắt</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="text" name="briefText" placeholder="Tóm tắt nội dung...">
+                    </div>
+                  </div>
+
+                <div class="row">
+                  <div class="col-25">
+                    <label for="content">Nội dung</label>
+                </div>
+                  <div class="col-75">
+                    <textarea name="content" id="" cols="30" rows="10"></textarea>
+                  </div>
+                </div>
+                <div class="row">
+                  <input type="submit" value="Submit">
+                </div>
+                </form>
+             </div>
         </div>
 
     </div>
@@ -250,6 +261,29 @@
         </div>
     </div>
     <script>
+
+        // modal  toi
+        var modal = document.getElementById("modalNewNotif");
+        var btn = document.getElementById("btn-new-notification");
+        var span = document.getElementsByClassName("close")[0];
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        $( ".close" ).click(function() {
+                $("#modalNewNotif").modal('hide');
+        });
+// modal  toi
+
+
+
         let btnCreateNewNoti = document.getElementById('btn-new-notification')
         let btnConfirmCreate = document.getElementById('btn-confirm-create')
         let notiUpdateForm = document.getElementById('noti-update-form')
@@ -317,7 +351,27 @@
             $('#confirm-delete-dialog').modal('hide')
         })
     </script>
-</body>
 
-</html>
-<%- include ("shares/footer") %>
+
+    <script>
+        var modal = document.getElementById("myModal");
+        var btn = document.getElementById("myBtn");
+        var span = document.getElementsByClassName("close")[0];
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        $('.action-icon').on('click', (e) => {
+        const menu = $(e.target).siblings('ul')  
+     menu.toggle()
+})
+    </script>
+
+    <%- include ("shares/footer") %>

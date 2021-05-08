@@ -36,6 +36,8 @@ router.get('/pagesByFacul/:fId/:page', securedLogin, (req, res) => {
         .then(([faculties, notifications]) => {
             var list_falcul_name = toRawFacul(faculties);
             res.render('notifications/all', {
+                user: req.user, 
+                role: req.user.role, 
                 currentUser: req.user,
                 notifications,
                 faculties,
@@ -63,6 +65,8 @@ router.get('/pages/:page', securedLogin, (req, res) => {
                 if (err) return next(err)
                 var list_falcul_name = toRawFacul(faculties);
                 res.render('notifications/all', {
+                    user: req.user, 
+                    role: req.user.role, 
                     currentUser: req.user,
                     notifications,
                     faculties,
@@ -148,6 +152,8 @@ router.get('/detail/:id', securedLogin, (req, res) => {
     }, (err, noti) => {
         if (!err) {
             res.render('notifications/detail', {
+                user:req.user,
+                role : req.user.role,
                 currentUser: req.user,
                 notification: noti
             })

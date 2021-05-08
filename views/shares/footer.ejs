@@ -163,13 +163,26 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
+
+window.addEventListener('scroll', () => {
+	const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+	
+	console.log( { scrollTop, scrollHeight, clientHeight });
+	
+	if(clientHeight + scrollTop >= scrollHeight - 5) {
+		// show the loading animation
+        showNewsfeed1();
+        YesDeleteImages_POST();
+	}
+});
+
+
+
     var isHomePage = true;
     var linkpt = "<%= user.picture %>"
     if (isHomePage === true) {
         showAddPost();
-        //showNewsfeed();
-        showNewsfeed1();
-        YesDeleteImages_POST();
+      
     };
     function showAddPost() {
         var html = "";
@@ -724,6 +737,8 @@
     socket.on("id_post", (id_post) => {
         $('#listThongBao').html(id_post)
     })
+
+
 </script>
 <style>
     #post-img-preview,

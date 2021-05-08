@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+
+    <title>Notifications</title>
+</head>
+<body>
+    <header id="header">
+        <h1>la trang nao</h1>
+        <div class="banner">
+            <div class="header__logo">
+                <img class="header__logo--img" src="https://stdportal.tdtu.edu.vn/Content/images/image.png" alt="TDT logo">
+            </div>
+            <div class="header__navbar">
+                <ul class="nav-list">
+                    <li class="nav-list__item">
+                        <a href="/" class="nav-list__item--link">Trang chủ</a>
+                    </li>
+                    <li class="nav-list__item">
+                        <a href="/notifications/pages/1" class="nav-list__item--link">Trang Thông báo</a>
+
+                    </li>
+                </ul>
+            </div>
+            <div class="header__banner--right">
+                <a href="/notifications">Trang thông báo</a>
+                <a href="/logout">Logout</a>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="grid">
+            
+            <% if(notification) { %>
+                <div class="noti-detail-section">
+                <div class="noti-detail__title">
+                    <%= notification.title %> 
+                </div>
+                <div class="noti-detail__info">
+                    <div class="info__owner">
+                        <a href="" class="info__owner--link">
+                            <%= notification.owner %>   |
+                        </a>
+                    </div>
+                    <div class="info__date">Ngày đăng  <%= new
+                        Date(notification.createdAt).toLocaleDateString() %>
+                        <%= new Date(notification.createdAt).toLocaleTimeString() %> </div>
+
+                </div>
+                <div class="noti-detail__content">
+                    Chào các em, <br/>
+                    <%= notification.content %> 
+                    <br/>
+                    Thân./.
+                </div>
+            </div>
+            <% } else { %> 
+               <div class=""><strong>Oops, somthing wrong !</strong></div>
+                <% } %> 
+                
+        
+                
+        </div>
+       
+    </div>
+</body>
+</html>
