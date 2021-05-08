@@ -1,0 +1,170 @@
+
+
+.notification {
+    background-color: #edf7fa;
+    padding: 16px;
+    margin: 0px 35px 5px 35px;
+}
+
+.notification__header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.action-icon {
+    cursor: pointer;
+}
+
+.action-menu {
+    background-color: #fff;
+    list-style: none;
+    position: absolute;
+    top: 20px;
+    z-index: 1;
+    display: none;
+}
+
+.action-menu:first-child {
+    border-radius: 2px;
+}
+
+.action-menu:last-child {
+    border-radius: 2px;
+}
+
+
+
+
+.btn-action {
+    background-color: #fff;
+    width: 70px;
+    outline: none;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.btn-action:hover {
+    background-color: #ddd;
+}
+
+.notification__title--text {
+    text-transform: uppercase;
+    color: var(--primary-color);
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.6
+}
+
+.notification__footer {
+    margin-top: 8px;
+    display: flex;
+    justify-content: space-between;
+}    
+/* icon image thong bao */
+
+
+.footer__detail--link {
+    text-decoration: none !important;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 13px;
+    font-weight: 900;
+    color: #0D93F8;
+}
+.footer__detail--link:hover{
+    color: #0D93F8;
+} 
+.footer__info {
+    
+    display: flex;
+    font-size: 14px;
+    color: #777777;
+}
+
+.footer__info--owner {
+    position: relative;
+    margin-right: 12px;
+    font-style: italic;
+}
+
+.footer__info--owner::after {
+    content: "";
+    position: absolute;
+    top: 1px;
+    right: -6px;
+    background-color: #777777;
+    width: 1px;
+    height: 15px;
+    display: block;
+}
+
+/* page */
+.page {
+    display: flex;
+    justify-content: center;
+  }
+  .pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+
+  }
+  
+  .pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .pagination a:hover:not(.active) {background-color: #ddd;}
+
+/* bar-add */
+.bar-add{
+    width: 100%;
+    height: 45px;
+    padding-top: 5px;  
+    margin-bottom: 15px;
+    background-color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 15px;
+    padding-left: 5px;
+}
+/* indexPage */
+#indexPage{
+    padding: 5px 5px 5px 5px;
+    color: #0689F7;
+    text-decoration: none;
+}
+.fa-home{
+    color: #0689F7 !important;
+}
+.fa-chevron-right{
+    font-size: 10px;
+}
+
+
+/* btn-create-faculty */
+#btn-new-notification {
+    background-color:inherit;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 15px;
+    padding-left: 5px;
+}
+#btn-new-notification:hover{
+    color: pink;
+}
+
+/* btn-detail */
+#btn-detail {
+    background-color:inherit;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 15px;
+    padding-left: 4px;
+    margin-top: 1.5px;
+    color:#808080;
+    cursor: auto;
+}
+

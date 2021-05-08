@@ -23,11 +23,11 @@ const securedLogin = (req, res, next) => {
     }
     res.redirect("/login");
 };
-router.get('/pagesByFacul/:fId/:page', securedLogin, (req, res) => {
+router.get('/pagesByFacul/:email/:page', securedLogin, (req, res) => {
     let perPage = 10
     let page = req.params.page || 1
-    var fcId = req.params.fId;
-    let notiQuery = req.app.db.collection("notifications").find({ "user": fcId })
+    var email = req.params.email;
+    let notiQuery = req.app.db.collection("notifications").find({ "user": email })
         .sort({ "createdAt": -1 })
         .skip((perPage * page) - perPage)
         .limit(perPage).toArray();
@@ -36,6 +36,8 @@ router.get('/pagesByFacul/:fId/:page', securedLogin, (req, res) => {
         .then(([faculties, notifications]) => {
             var list_falcul_name = toRawFacul(faculties);
             res.render('notifications/all', {
+                user : req.user,
+                role : req.user.role,
                 currentUser: req.user,
                 notifications,
                 faculties,
@@ -63,6 +65,8 @@ router.get('/pages/:page', securedLogin, (req, res) => {
                 if (err) return next(err)
                 var list_falcul_name = toRawFacul(faculties);
                 res.render('notifications/all', {
+                    user : req.user,
+                    role : req.user.role,
                     currentUser: req.user,
                     notifications,
                     faculties,
@@ -128,12 +132,14 @@ router.post('/create', securedLogin,upload.any("litsfile"), (req, res) => {
         "briefText": formData.briefText,
         "content": formData.content,
         "createdAt": createdAt,
-        "user": req.user._id
+        "user": req.user.email,
+        "userName" : req.user.name
     }, (err, user) => {
         if (!err) {
             res.json({
                 "status": "success",
-                "message": "Noti has been Create."
+                "message": "Noti has been Create.",
+                "data" : user.ops[0]
             });
         }
         else {
@@ -148,6 +154,8 @@ router.get('/detail/:id', securedLogin, (req, res) => {
     }, (err, noti) => {
         if (!err) {
             res.render('notifications/detail', {
+                user : req.user,
+                role : req.user.role,
                 currentUser: req.user,
                 notification: noti
             })

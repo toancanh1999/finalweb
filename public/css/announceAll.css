@@ -1,0 +1,72 @@
+.search-form-section{
+    margin-bottom: 5px;
+}
+
+.content-TB{
+    padding: 5px 5px;
+}
+
+.notification#overTB {
+    background-color: #edf7fa;
+    padding: 16px;
+    margin: -16px 14px -1px 14px;
+    border-radius: 0;
+}
+
+.notification #middle-TB{
+    text-align: center;
+}
+#middle-TB .text-Big{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#time-detail{
+    float: right;
+    margin-bottom: 15px;
+}
+
+#hi-ST{
+    padding: 20px 10px 10px 10px;
+    line-height: 2;
+}
+#dear-SV{
+    font-size: 25px;
+}
+#content-Detail{
+    font-size: 20px;
+    font-weight: lighter;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+#thank-TB{
+    margin-top: 5rem;
+}
+
+/* #ol_tb_moi .message .chat-body{
+    text-align:left;
+    display: -webkit-box;
+    -webkit-line-clamp: 3 ;
+    -webkit-box-orient: vertical;
+    overflow:hidden;
+    text-overflow: ellipsis;
+  } */
+
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }

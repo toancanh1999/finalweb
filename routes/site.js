@@ -25,33 +25,35 @@ var storage = multer.diskStorage({
 });
 var upload = multer({ storage: storage });
 
-router.get('/', secured, (req, res) => {
-  req.app.db.collection("users").findOne({
-    "email": req.user.email
-  }, (err, user) => {
-    if (!user) {
-      console.log('faillllllllll')
-    }
-    else {
-      console.log('sucess')
-    }
+router.get('/homePage', secured, (req, res) => {
+  req.app.db.collection("notifications").find({
+  }
+  ).sort({
+    "createdAt": -1
+  }).limit(3).toArray((err,rel) => {
+    res.render('index', { isMyPage : true , user: req.user, role: req.user.role, userID: req.user.id,poss : rel })
   })
-  res.render('home', { title: "Profile", user: req.user, role: 'student', userID: req.user.id })
 })
 router.get('/home', secured, (req, res) => {
   const { role } = req.user;
   console.log(req.user)
-  switch (role) {
-    case 'student':
-      res.render('index', { title: "Profile", user: req.user, role: role, userID: req.user.id });
-      break;
-    case 'admin':
-      res.render('index', { title: "Profile", role: role, user: req.user, userID: req.user.id });
-      break;
-    default:
-      res.render('index', { title: "Profile", role: role, user: req.user, userID: req.user.id });
-      break;
+  req.app.db.collection("notifications").find({
   }
+  ).sort({
+    "createdAt": -1
+  }).limit(3).toArray((err,rel) => {
+    switch (role) {
+      case 'student':
+        res.render('index', { isMyPage : null, user: req.user, role: role, userID: req.user.id,poss : rel });
+        break;
+      case 'admin':
+        res.render('index', { isMyPage : null, role: role, user: req.user, userID: req.user.id,poss : rel });
+        break;
+      default:
+        res.render('index', { isMyPage : null, role: role, user: req.user, userID: req.user.id,poss : rel});
+        break;
+    }
+  });
 })
 router.post("/removePost", upload.any("litsfile"), function (request, result, err) {
   var id = request.body.id;
@@ -464,13 +466,20 @@ router.post("/postComment", upload.any("litsfile"), function (request, result) {
     }
   });
 });
-router.post("/getNewsfeed", function (request, result) {
+router.post("/getNewsfeed", upload.any("litsfile"), function (request, result) {
 
-  request.app.db.collection("users").aggregate([{ $sample: { size: 5 } }]).toArray((err, rel) => {
+  request.app.db.collection("users").aggregate([{ $sample: { size: 3 } }]).toArray((err, rel) => {
     var emails = [];
-    for (var i = 0; i < rel.length; i++) {
-      emails.push(rel[i].email);
+    if(request.body.isMyPage == "true"){
+      emails.push(request.user.email);
     }
+    else{
+      for (var i = 0; i < rel.length; i++) {
+        emails.push(rel[i].email);
+      }
+    }
+    console.log(request.body.isMyPage)
+    console.log(emails)
     request.app.db.collection("posts")
       .find({
         "user.email": {
@@ -480,7 +489,7 @@ router.post("/getNewsfeed", function (request, result) {
       .sort({
         "createdAt": -1
       })
-      .limit(5)
+      .limit(3)
       .toArray(function (error, data) {
         result.json({
           "status": "success",

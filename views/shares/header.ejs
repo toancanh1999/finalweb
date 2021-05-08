@@ -89,7 +89,6 @@
     <script src="https://kit.fontawesome.com/acd9ed5e69.js" crossorigin="anonymous"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.2/socket.io.min.js'></script>
     <script src="/socket.io/socket.io.js"></script>
-
     <link href="/css/home.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/color.css">
@@ -97,6 +96,8 @@
     <link rel="stylesheet" href="/css/strip.css">
     <link rel="stylesheet" href="/css/responsive.css">
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/facultyAn.css">
+    <link rel="stylesheet" href="/css/announceAll.css">
     <script>
         var socket  =  io();
     </script>
@@ -212,6 +213,12 @@
                                     <div class="clearfix"></div>
                                 </li>
                                 <% } %>
+                                <li>
+                                    <a href="/home">
+                                        <i class="fa fa-home"></i>
+                                        <span class="menu-title">Home menu</span>
+                                    </a>
+                                </li>
                                     <% if(role == "admin" ) { %>
                                         <li>
                                             <a href="/admin">
@@ -232,15 +239,9 @@
                                             </li>
                                             <% } %>
                                                 <li>
-                                                    <a href="https://stdportal.tdtu.edu.vn">
+                                                    <a href="/homePage">
                                                         <i class="fa fa-sign-in"></i>
                                                         <span class="menu-title">My POST</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="/">
-                                                        <i class="fa fa-home"></i>
-                                                        <span class="menu-title">Home menu</span>
                                                     </a>
                                                 </li>
                         </ul>

@@ -11,6 +11,7 @@ function route(app) {
     })
     app.use('/',  siteRouter);
     app.use('/addPost',  siteRouter);
+    app.use('/homePage',  siteRouter);
     app.use('/getNewsfeed',  siteRouter);
     app.use('/toggleLikePost',  siteRouter);
     app.use('/admin',  adminRouter);

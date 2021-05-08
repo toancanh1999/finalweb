@@ -1,4 +1,5 @@
 </div>
+
 <!--BEGIN FOOTER-->
 <div id="footer" class="fixed">
     <div class="copyright">2021 © Huynh Ngoc Canh Toan</div>
@@ -721,9 +722,30 @@
         formData.append("id", id);
         ajax.send(formData);
     }
-    socket.on("id_post", (id_post) => {
-        $('#listThongBao').html(id_post)
+    socket.on("id_post", (noti) => {
+        var html = `<div id="willDelete" class="caption text-uppercase thong-bao-khan">
+                                            <img class="req-img" src="/images/star.png">
+                                            &nbsp;&nbsp;Thông báo từ `+ noti.userName + ` : 
+                                            <a style="cursor:pointer" id="listThongBao"></a>
+                                        </div>`;
+        $('#thongbaotukhoa').append(html);
+        $('#listThongBao').html(noti.briefText)
+        $('#listThongBao').attr("href", "/notifications/detail/" + noti._id)
+        setTimeout(function () {
+            $("#willDelete").remove();
+        }, 30000);
     })
+    window.addEventListener('scroll', () => {
+        const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+        if (clientHeight + scrollTop >= scrollHeight - 5) {
+            loading.classList.add('show');
+            setTimeout(greet, 2000);
+            YesDeleteImages_POST();
+        }
+    });
+    const greet = function () {
+        showNewsfeed1();;
+    };
 </script>
 <style>
     #post-img-preview,

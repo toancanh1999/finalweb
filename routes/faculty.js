@@ -20,8 +20,9 @@ router.get('/:fcid', securedLogin, securedRole, (req, res) => {
     var fcId = req.params.fcid;
     req.app.db.collection("users").findOne({ "_id": ObjectId(fcId) }, (err, user) => {
         req.app.db.collection("notifications").find({
-            "user": fcId
+            "user": user.email
         }).toArray((err,result) => {
+            console.log(result)
             res.render('faculty', {
                 role : req.user.role,
                 user: user,

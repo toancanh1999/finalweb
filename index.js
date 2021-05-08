@@ -1,3 +1,4 @@
+//Toan
 const express = require('express');
 const app = express();
 const route = require('./routes')
@@ -30,8 +31,8 @@ const users = [];
 const mainURL = "http://localhost:8080";
 socketIO.on("connection", function (socket) {
     console.log("User connected", socket.id);
-    socket.on('id_post',(id_post) => {
-        socketIO.emit("id_post", id_post)
+    socket.on('id_post',(noti) => {
+        socketIO.emit("id_post", noti)
     })
 });
 const port = process.env.PORT;

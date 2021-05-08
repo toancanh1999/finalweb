@@ -4,19 +4,20 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/css/loginForm.css">
-    
 </head>
 <body>
-    <div class="page-container">
+    <div class="container">
         <div class="login-form">
+            <div class="contain-icon">
+                <a href="/login/auth/google"><img src="/images/google.png" alt="" id="google"></a>
+            </div>
             <p class="login-form__title">Welcome</p> 
-                <p>Sign in to Continue</p>
                 <form method="post" action="/login"  class="form1">
                     <div class="form-group">
-                        <input name="username"  type="text" align="center" placeholder="Username">
+                        <input name="username"  type="text" align="center" placeholder="Username" id="input-log1">
                     </div>
                     <div class="form-group">
-                         <input name="password"  type="password" align="center" placeholder="Password">
+                         <input name="password"  type="password" align="center" placeholder="Password"  id="input-log2">
                     </div>
 
                     <% if(message.length > 0) { %>
@@ -26,7 +27,7 @@
                     <% } %>
                     
                    
-                    <div class="form-group">
+                    <div class="form-group" id="login1">
                         <button class="btn btn-login"  type="submit">Login</button>
                     </div>
                     <!-- <p class="forgot" align="center">
@@ -34,9 +35,9 @@
 
                     </p> -->
                 </form>
-                <p class="login-form__title">Welcome</p> 
-                <p>Sign in to Continue</p>
-                <a href="/login/auth/google" class="login-form__btn"><span class="fa fa-google"></span> Sign In with Google</a>
+        
+              
+                
             
         </div>
     </div>

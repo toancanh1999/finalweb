@@ -15,10 +15,12 @@ const securedRole = (req, res, next) => {
 router.get('/', securedLogin, securedRole, (req, res, next) => {
     req.app.db.collection("users").find({
         "role": {
-            $in: ['cntt', 'cait']
+            $nin: ['admin', 'student']
         }
     }).toArray(function (err, result) {
         res.render('adminPage', {
+            user : req.user,
+            role : req.user.role,
             faculties: result
         })
     })
@@ -32,7 +34,7 @@ router.post('/register', securedLogin, securedRole, (req, res) => {
         "role": formData.role,
         "email": formData.email,
         "name": formData.name,
-        "picture": 'http://localhost:8080/public/images/icons/favicon.ico'
+        "picture": '/images/icons/favicon.ico'
     }, (err, user) => {
         if (!err) {
             res.redirect('back');
