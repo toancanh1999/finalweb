@@ -100,6 +100,11 @@
     <link rel="stylesheet" href="/css/admin.css">
     <link rel="stylesheet" href="/css/facultyAn.css">
     <link rel="stylesheet" href="/css/announceAll.css">
+
+    <link rel="stylesheet" href="/css/main.min.css">
+	<link rel="stylesheet" href="/css/style1.css">
+	<link rel="stylesheet" href="/css/color.css">
+	<link rel="stylesheet" href=" /css/responsive.css">
     <script>
         var socket  =  io();
     </script>
@@ -172,10 +177,14 @@
                                             <%= user.name %>
                                         </span>&nbsp;<span class="caret"></span>
                                 </a>
-
+                                
                                 <ul class="dropdown-menu dropdown-user pull-right">
                                     <li>
-                                        <a href="/StudentLogin/Logout" class="right-logout" data-hover="tooltip"
+                                        <a href="/Account" class="right-logout" data-hover="tooltip"
+                                            title=""><i class="fas fa-users-cog"></i>&nbsp Account</a>
+                                    </li>
+                                    <li>
+                                        <a href="/logout" class="right-logout" data-hover="tooltip"
                                             title=""><i class="fa fa-sign-out"></i>Logout</a>
                                     </li>
                                 </ul>

@@ -58,18 +58,34 @@
                                     <% } else { %>
                                         <div class="empty-alert">Chưa có thông báo nào</div>
                                         <% } %>
-                    <div class="page">
-                        <div class="pagination " >
-                            <a href="#">&laquo;</a>
-                            <a href="#">1</a>
-                            <a class="active" href="#">2</a>
-                            <a href="#">3</a>
-                            <a href="#">4</a>
-                            <a href="#">5</a>
-                            <a href="#">6</a>
-                            <a href="#">&raquo;</a>
-                          </div>
-                    </div>
+                                        <% if (pages > 0) { %>
+                                            <ul class="pagination " style="text-align: center;">
+                                                <% if (current == 1) { %>
+                                                    <li class="pagination-item item-first disabled"><a>First</a></li>
+                                                <% } else { %>
+                                                    <li class="pagination-item item-first" ><a href="/notifications/pages/1">First</a></li>
+                                                <% } %>
+                                                <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+                                                <% if (i !== 1) { %>
+                                                    <li class="pagination-item disabled"><a>...</a></li>
+                                                <% } %>
+                                                <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                                                    <% if (i == current) { %>
+                                                        <li class="pagination-item active"><a><%= i %></a></li>
+                                                    <% } else { %>
+                                                        <li class="pagination-item "><a href="/notifications/pages/<%= i %>"><%= i %></a></li>
+                                                    <% } %>
+                                                    <% if (i == Number(current) + 4 && i < pages) { %>
+                                                        <li class="pagination-item disabled"><a>...</a></li>
+                                                    <% } %>
+                                                <% } %>
+                                                <% if (current == pages) { %>
+                                                    <li class="pagination-item item-last disabled"><a>Last</a></li>
+                                                <% } else { %>
+                                                    <li class="pagination-item item-last"><a href="/notifications/pages/<%= pages %>">Last</a></li>
+                                                <% } %>
+                                            </ul>
+                                        <% } %>
                        
                     </div>
                 </div>

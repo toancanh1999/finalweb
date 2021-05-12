@@ -24,7 +24,21 @@ var storage = multer.diskStorage({
   }
 });
 var upload = multer({ storage: storage });
+router.get('/account', secured, (req, res) => {
+  req.app.db.collection("users").findOne({
+    "email": req.user.email
+  }, (err, user) => {
+    if (!user) {
+      console.log('faillllllllll')
+    }
+    else {
+      console.log('sucess')
+    }
+  })
+ 
 
+  res.render('infor', { title: "Profile", user: req.user, role: 'student', userID: req.user.id })
+})
 router.get('/', secured, (req, res) => {
   req.app.db.collection("users").findOne({
     "email": req.user.email

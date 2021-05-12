@@ -16,6 +16,8 @@ function route(app) {
     app.use('/admin',  adminRouter);
     app.use('/faculty', facultyRouter);
     app.use('/notifications', notificationRouter)
+    app.use('/account', siteRouter)
+    
 
 }
 

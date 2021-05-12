@@ -1,0 +1,164 @@
+[{
+  "_id": "110853988034600458232",
+  "name": "Ngọc Cảnh Toàn Huỳnh",
+  "given_name": "Ngọc Cảnh Toàn",
+  "family_name": "Huỳnh",
+  "picture": "https://lh3.googleusercontent.com/a-/AOh14GhRQMNgK_XEh0PmAm_felXVH0um3NtCMPGv0I1N=s96-c",
+  "email": "huynhngoccanhtoan@gmail.com",
+  "email_verified": "true",
+  "locale": "vi",
+  "role": "student",
+  "posts": [
+    {
+      "_id": {
+        "$oid": "60950bb045558c33a8db2ace"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "60950bd145558c33a8db2ad0"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "60950c1345558c33a8db2ad1"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "60950c9645558c33a8db2ad2"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "60950d4a45558c33a8db2ad3"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "60950d7545558c33a8db2ad4"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "60950d8445558c33a8db2ad5"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "60952202cdff0703607f739f"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "609603b76b3d362ce40a3287"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "609603ba6b3d362ce40a3288"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "609603bc6b3d362ce40a3289"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "609603bf6b3d362ce40a328a"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "609660a8960ab03478b5395a"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "60966142960ab03478b5395b"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "609661b5960ab03478b5395c"
+      }
+    }
+  ],
+  "notifications": [
+    {
+      "_id": {
+        "$oid": "6094ccd1cd087c2060176fa2"
+      },
+      "type": "new_comment",
+      "content": "Khoa Cong nghe thong tin commented on your post.",
+      "profileImage": "http://localhost:8080/public/images/icons/favicon.ico",
+      "createdAt": 1620364497714
+    }
+  ],
+  "khoa": "cntt"
+},{
+  "_id": {
+    "$oid": "6091017027f31bc2307c864b"
+  },
+  "username": "toan",
+  "password": "123456",
+  "role": "admin",
+  "email": "toancanh1999@gmail.com",
+  "name": "Admin",
+  "picture": "/images/admin.ico",
+  "posts": []
+},{
+  "_id": {
+    "$oid": "60924ffcaced8c953403d8d2"
+  },
+  "username": "CNTT",
+  "password": "123456",
+  "role": "cntt",
+  "email": "toanhuynh@gmail.com",
+  "name": "Khoa Công Nghệ Thông Tin",
+  "picture": "/images/icons/favicon.ico",
+  "posts": [
+    {
+      "_id": {
+        "$oid": "60954a5c792f6f36641aa5fc"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "60964052210b34108070d818"
+      }
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "60925c2aaced8c953403d8d3"
+  },
+  "username": "CAIT",
+  "password": "123456",
+  "role": "cait",
+  "email": "canhtoan1999@gmail.com",
+  "name": "Khoa Mỹ Thuật Công Nghiệp",
+  "picture": "/images/icons/favicon.ico",
+  "posts": []
+},{
+  "_id": {
+    "$oid": "60926a5e857cbf422cb94eb4"
+  },
+  "username": "dien",
+  "password": "123456",
+  "role": "electronic",
+  "email": "vominhthanh722@gmail.com",
+  "name": "Khoa Điện",
+  "picture": "/images/icons/favicon.ico"
+},{
+  "_id": {
+    "$oid": "6096550c17568025d8b8c265"
+  },
+  "username": "ktct",
+  "password": "123456",
+  "role": "ktct",
+  "email": "ktct@gmail.com",
+  "name": "Khoa kỹ thuật công trình",
+  "picture": "/images/icons/favicon.ico"
+}]
