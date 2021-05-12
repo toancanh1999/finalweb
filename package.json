@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --inspect index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -29,5 +29,8 @@
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
     "socket.io": "^4.0.2"
+  },
+  "engines": {
+    "node": "14.x"
   }
 }
